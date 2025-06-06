@@ -1,4 +1,5 @@
 import { CheckCircle, GraduationCap, Award, BookOpen } from 'lucide-react';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { FadeIn } from '../components/ui/fade-in';
 import { ParallaxSection } from '../components/ui/parallax-section';
@@ -111,6 +112,17 @@ export default function AboutPage() {
               </h2>
             </FadeIn>
           </ParallaxSection>
+          
+          <FadeIn className="mb-12">
+            <div className="relative h-[400px] w-full max-w-4xl mx-auto rounded-xl overflow-hidden">
+              <Image
+                src="/images/tutor-teaching.jpg"
+                alt="Professional tutoring approach"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <FadeIn delay={0.1}>
               <div className="text-center group">

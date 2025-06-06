@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { FadeIn } from './ui/fade-in';
 
@@ -75,8 +76,41 @@ export default function Footer() {
           </FadeIn>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-slate-800 text-center text-gray-400">
-          <p className="text-sm">&copy; {currentYear} Aulawell. All rights reserved.</p>
+        {/* Badges Section */}
+        <div className="mt-12 pt-8 border-t border-slate-800">
+          <div className="flex flex-col items-center gap-6">
+            <div className="flex flex-wrap items-center justify-center gap-8">
+              <a 
+                href="https://www.gov.uk/government/organisations/disclosure-and-barring-service/about"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-transform hover:scale-105"
+              >
+                <Image
+                  src="/images/badges/dbs-checked.png"
+                  alt="DBS Checked"
+                  width={120}
+                  height={60}
+                  className="opacity-70 hover:opacity-100 transition-opacity"
+                />
+              </a>
+              <a 
+                href="https://www.thetutorsassociation.org.uk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-transform hover:scale-105"
+              >
+                <Image
+                  src="/images/badges/tutors-association.avif"
+                  alt="The Tutors' Association Individual Member 2024-2025"
+                  width={100}
+                  height={38}
+                  className="opacity-70 hover:opacity-100 transition-opacity"
+                />
+              </a>
+            </div>
+            <p className="text-sm text-gray-400">&copy; {currentYear} Aulawell. All rights reserved.</p>
+          </div>
         </div>
       </div>
     </footer>
