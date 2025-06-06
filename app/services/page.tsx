@@ -1,6 +1,7 @@
 import { Users, CheckSquare, MessageSquare, Globe, School, FileText } from 'lucide-react';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { FadeIn } from '../components/ui/fade-in';
 
 export const metadata: Metadata = {
   title: 'Tutoring Services - GCSE, A-Level, IB & More | Aulawell',
@@ -13,35 +14,44 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="bg-gray-50 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-navy mb-6 text-center">
-            Comprehensive Support for International Academic Success
-          </h1>
-          <p className="text-xl text-gray-700 text-center mb-8">
-            Every international student's journey is unique. That's why Aulawell offers flexible, 
-            personalized tutoring that adapts to your child's specific curriculum, learning style, and goals.
-          </p>
+          <FadeIn>
+            <h1 className="text-4xl font-bold text-navy mb-6 text-center">
+              Comprehensive Support for International Academic Success
+            </h1>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <p className="text-xl text-gray-700 text-center mb-8">
+              Every international student's journey is unique. That's why Aulawell offers flexible, 
+              personalized tutoring that adapts to your child's specific curriculum, learning style, and goals.
+            </p>
+          </FadeIn>
           
-          <div className="relative h-[400px] w-full rounded-xl overflow-hidden">
-            <Image
-              src="/images/online-tutoring.jpg"
-              alt="Online tutoring session"
-              fill
-              className="object-cover"
-            />
-          </div>
+          <FadeIn delay={0.2}>
+            <div className="relative h-[400px] w-full rounded-xl overflow-hidden">
+              <Image
+                src="/images/online-tutoring.jpg"
+                alt="Online tutoring session"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* Academic Tutoring */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-navy mb-4">Academic Tutoring</h2>
-          <p className="text-xl text-gray-700 mb-12">
-            Master British & American Curricula with Confidence
-          </p>
+          <FadeIn>
+            <h2 className="text-3xl font-bold text-navy mb-4">Academic Tutoring</h2>
+            <p className="text-xl text-gray-700 mb-12">
+              Master British & American Curricula with Confidence
+            </p>
+          </FadeIn>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <FadeIn delay={0.1}>
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <h3 className="text-xl font-bold text-navy mb-3">Key Stage 3 (Ages 11-14)</h3>
               <p className="mb-4">
                 Build strong foundations during these crucial transition years. I help students 
@@ -52,9 +62,11 @@ export default function ServicesPage() {
                 <p><strong>Focus:</strong> Study skills, curriculum adaptation, confidence building</p>
                 <p className="text-gold font-semibold">Outcome: Smooth transition and preparation for GCSE success</p>
               </div>
-            </div>
+              </div>
+            </FadeIn>
             
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <FadeIn delay={0.2}>
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <h3 className="text-xl font-bold text-navy mb-3">GCSE & IGCSE (Ages 14-16)</h3>
               <p className="mb-4">
                 Navigate the complexities of British examinations with an actual examiner as your guide.
@@ -64,9 +76,11 @@ export default function ServicesPage() {
                 <p><strong>Examiner Advantage:</strong> I mark these exams—I know exactly what earns top marks</p>
                 <p className="text-gold font-semibold">Outcome: Consistent 7-9 grades (A/A*) for my students</p>
               </div>
-            </div>
+              </div>
+            </FadeIn>
             
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <FadeIn delay={0.2}>
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <h3 className="text-xl font-bold text-navy mb-3">A-Level (Ages 16-18)</h3>
               <p className="mb-4">
                 Achieve the grades needed for top university admission with examiner-level insight.
@@ -76,9 +90,11 @@ export default function ServicesPage() {
                 <p><strong>Support Includes:</strong> Essay mastery, unseen text analysis, coursework guidance</p>
                 <p className="text-gold font-semibold">Outcome: Students regularly achieve A/A* and Oxbridge offers</p>
               </div>
-            </div>
+              </div>
+            </FadeIn>
             
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <FadeIn delay={0.2}>
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <h3 className="text-xl font-bold text-navy mb-3">International Baccalaureate (IB)</h3>
               <p className="mb-4">
                 Master the unique demands of IB English with specialized support.
@@ -88,7 +104,8 @@ export default function ServicesPage() {
                 <p><strong>Levels:</strong> Both Standard and Higher Level</p>
                 <p className="text-gold font-semibold">Outcome: Average improvement from 5 to 7</p>
               </div>
-            </div>
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -102,7 +119,8 @@ export default function ServicesPage() {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <FadeIn delay={0.2}>
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <div className="flex items-center gap-3 mb-4">
                 <School className="text-navy w-8 h-8" />
                 <h3 className="text-xl font-bold text-navy">Children & Teenagers</h3>
@@ -118,7 +136,8 @@ export default function ServicesPage() {
               </ul>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <FadeIn delay={0.2}>
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <div className="flex items-center gap-3 mb-4">
                 <Users className="text-navy w-8 h-8" />
                 <h3 className="text-xl font-bold text-navy">Adults</h3>
@@ -196,7 +215,8 @@ export default function ServicesPage() {
                   <p className="text-gray-700">Properly cite sources and avoid plagiarism</p>
                 </div>
               </div>
-            </div>
+              </div>
+            </FadeIn>
             
             <div>
               <h3 className="text-xl font-bold text-navy mb-4">Perfect For:</h3>
@@ -256,7 +276,8 @@ export default function ServicesPage() {
                   <p><strong>Investment:</strong> €35 per GCSE paper, €45 per A-Level/IB paper</p>
                 </div>
               </div>
-            </div>
+              </div>
+            </FadeIn>
             
             {/* Interview Practice */}
             <div className="bg-white p-8 rounded-lg shadow-md">
@@ -297,7 +318,8 @@ export default function ServicesPage() {
                   <p><strong>Investment:</strong> €85 per session</p>
                 </div>
               </div>
-            </div>
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -310,7 +332,8 @@ export default function ServicesPage() {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <FadeIn delay={0.2}>
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <div className="flex items-center gap-3 mb-4">
                 <Globe className="text-navy w-8 h-8" />
                 <h3 className="text-xl font-bold text-navy">Online Tutoring (Worldwide)</h3>
@@ -324,7 +347,8 @@ export default function ServicesPage() {
               </ul>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <FadeIn delay={0.2}>
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <div className="flex items-center gap-3 mb-4">
                 <Users className="text-navy w-8 h-8" />
                 <h3 className="text-xl font-bold text-navy">In-Person Tutoring (Madrid)</h3>

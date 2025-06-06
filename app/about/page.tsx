@@ -182,6 +182,17 @@ export default function AboutPage() {
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-navy mb-8">Credentials & Experience</h2>
+          
+          <FadeIn className="mb-8">
+            <div className="relative h-[300px] w-full rounded-xl overflow-hidden">
+              <Image
+                src="/images/academic-excellence.jpg"
+                alt="Academic excellence and achievements"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               "Qualified Teacher Status (QTS) - UK Department for Education",
