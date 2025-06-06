@@ -1,71 +1,101 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight, GraduationCap } from 'lucide-react';
 import ServiceCard from './components/ServiceCard';
-import TestimonialCard from './components/TestimonialCard';
+import { FadeIn } from './components/ui/fade-in';
+import { ShimmerButton } from './components/ui/shimmer-button';
+import { GridBackground } from './components/ui/grid-background';
+import { AnimatedTestimonialCard } from './components/ui/animated-testimonial-card';
+import { AnimatedCounter } from './components/ui/animated-counter';
+import { ParallaxSection } from './components/ui/parallax-section';
+import { StatsSection } from './components/ui/stats-section';
+import { ScrollIndicator } from './components/ui/scroll-indicator';
 
 export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-navy text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="relative bg-navy text-white min-h-[85vh] flex items-center overflow-hidden">
+        <GridBackground />
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
-                Expert British & American Curriculum Tutoring for International Students
-              </h1>
-              <p className="text-xl mb-8 text-gray-200">
-                Helping students aged 11-18 excel in KS3, GCSE, IGCSE, A-Level, and IB from Madrid and worldwide
-              </p>
+              <FadeIn>
+                <div className="inline-flex items-center gap-2 text-gold text-sm font-semibold tracking-wider uppercase mb-6">
+                  <span className="w-12 h-px bg-gold"></span>
+                  Current Examiner Advantage
+                </div>
+                <h1 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight">
+                  Expert British & American Curriculum Tutoring
+                </h1>
+              </FadeIn>
+              <FadeIn delay={0.2}>
+                <p className="text-xl mb-8 text-gray-200">
+                  Helping students aged 11-18 excel in KS3, GCSE, IGCSE, A-Level, and IB from Madrid and worldwide
+                </p>
+              </FadeIn>
               
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Link
-                  href="/contact"
-                  className="inline-block bg-gold text-navy px-8 py-3 rounded-md font-semibold hover:bg-opacity-90 transition-colors duration-200 text-center"
-                >
-                  Book Your Free Consultation
-                </Link>
-                <a
-                  href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '34XXXXXXXXX'}`}
-                  className="inline-block border-2 border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-navy transition-colors duration-200 text-center"
-                >
-                  WhatsApp Me
-                </a>
-              </div>
+              <FadeIn delay={0.3}>
+                <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                  <Link href="/contact">
+                    <ShimmerButton variant="primary">
+                      Book Your Free Consultation
+                    </ShimmerButton>
+                  </Link>
+                  <a href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '34XXXXXXXXX'}`}>
+                    <ShimmerButton variant="secondary">
+                      WhatsApp Me
+                    </ShimmerButton>
+                  </a>
+                </div>
+              </FadeIn>
               
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="text-gold w-5 h-5 flex-shrink-0" />
-                  <span>Current AQA & Cambridge Examiner</span>
+              <FadeIn delay={0.4}>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="text-gold w-5 h-5 flex-shrink-0" />
+                    <span>Current AQA & Cambridge Examiner</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="text-gold w-5 h-5 flex-shrink-0" />
+                    <span>UK Leading Independent School Teacher</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="text-gold w-5 h-5 flex-shrink-0" />
+                    <span><AnimatedCounter end={100} suffix="%" /> of Students Exceed Target Grades</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="text-gold w-5 h-5 flex-shrink-0" />
-                  <span>UK Leading Independent School Teacher</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="text-gold w-5 h-5 flex-shrink-0" />
-                  <span>100% of Students Exceed Target Grades</span>
-                </div>
-              </div>
+              </FadeIn>
             </div>
             
-            <div className="relative h-[400px] lg:h-[500px]">
-              <div className="absolute inset-0 bg-gray-300 rounded-lg">
-                {/* Placeholder for Amy's photo */}
-                <div className="flex items-center justify-center h-full text-gray-500">
-                  <p>Professional photo placeholder</p>
+            <FadeIn delay={0.5} className="relative">
+              <div className="relative h-[500px] lg:h-[600px]">
+                <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-gold/5 rounded-2xl backdrop-blur-sm">
+                  <div className="absolute inset-0 bg-white/10 rounded-2xl">
+                    {/* Placeholder for Amy's photo */}
+                    <div className="flex items-center justify-center h-full">
+                      <div className="text-center">
+                        <div className="w-32 h-32 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                          <GraduationCap className="w-16 h-16 text-white/60" />
+                        </div>
+                        <p className="text-white/60 text-sm">Professional photo coming soon</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                {/* Decorative elements */}
+                <div className="absolute -top-4 -right-4 w-24 h-24 bg-gold/20 rounded-full blur-2xl" />
+                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-400/10 rounded-full blur-2xl" />
               </div>
-            </div>
+            </FadeIn>
           </div>
         </div>
+        <ScrollIndicator />
       </section>
 
       {/* About Preview Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
+          <FadeIn className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6 text-navy">Meet Your Expert Tutor</h2>
             <p className="text-lg mb-4">
               Hi, I'm Amy. As a UK-qualified teacher and current examiner for AQA and Cambridge, 
@@ -81,83 +111,96 @@ export default function Home() {
             >
               Learn More About My Approach <ArrowRight size={20} />
             </Link>
-          </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* Services Overview */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12 text-navy">
-            Tailored Support for Every Student
-          </h2>
+          <ParallaxSection offset={30}>
+            <FadeIn>
+              <h2 className="text-3xl font-bold text-center mb-12 text-navy">
+                Tailored Support for Every Student
+              </h2>
+            </FadeIn>
+          </ParallaxSection>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ServiceCard
-              title="Academic Tutoring"
-              subtitle="British & American Curricula"
-              description={[
-                "KS3, GCSE, IGCSE",
-                "A-Level & IB",
-                "University preparation"
-              ]}
-              outcome="Average 2-grade improvement in 6 months"
-            />
+            <FadeIn delay={0.1}>
+              <ServiceCard
+                title="Academic Tutoring"
+                subtitle="British & American Curricula"
+                description={[
+                  "KS3, GCSE, IGCSE",
+                  "A-Level & IB",
+                  "University preparation"
+                ]}
+                outcome="Average 2-grade improvement in 6 months"
+              />
+            </FadeIn>
             
-            <ServiceCard
-              title="English as a Foreign Language"
-              subtitle="All Ages & Levels"
-              description={[
-                "Conversational fluency",
-                "Cambridge exam preparation",
-                "Business English"
-              ]}
-              outcome="From beginners to advanced speakers"
-            />
+            <FadeIn delay={0.2}>
+              <ServiceCard
+                title="English as a Foreign Language"
+                subtitle="All Ages & Levels"
+                description={[
+                  "Conversational fluency",
+                  "Cambridge exam preparation",
+                  "Business English"
+                ]}
+                outcome="From beginners to advanced speakers"
+              />
+            </FadeIn>
             
-            <ServiceCard
-              title="Academic English"
-              subtitle="Curriculum-Specific Language"
-              description={[
-                "Essay writing mastery",
-                "Subject terminology",
-                "Exam technique"
-              ]}
-              outcome="Bridge the gap between fluency and academic excellence"
-            />
+            <FadeIn delay={0.3}>
+              <ServiceCard
+                title="Academic English"
+                subtitle="Curriculum-Specific Language"
+                description={[
+                  "Essay writing mastery",
+                  "Subject terminology",
+                  "Exam technique"
+                ]}
+                outcome="Bridge the gap between fluency and academic excellence"
+              />
+            </FadeIn>
           </div>
           
-          <div className="text-center mt-12">
+          <FadeIn delay={0.4} className="text-center mt-12">
             <Link
               href="/services"
               className="inline-flex items-center gap-2 text-gold hover:text-navy font-semibold transition-colors"
             >
               View All Services <ArrowRight size={20} />
             </Link>
-          </div>
+          </FadeIn>
         </div>
       </section>
+
+      {/* Stats Section */}
+      <StatsSection />
 
       {/* Featured Testimonial */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <TestimonialCard
+          <FadeIn className="max-w-4xl mx-auto">
+            <AnimatedTestimonialCard
               quote="Amy transformed my daughter's approach to A-Level English Literature. As expat parents new to the British system, we were overwhelmed. Amy not only improved Sofia's grades from C to A*, but her examiner insight meant Sofia knew exactly what Cambridge wanted. Her understanding of both international perspectives and UK requirements is invaluable."
               author="Maria & Carlos"
               context="Parents of Sofia (now studying Medicine at UCL)"
               rating={5}
             />
-          </div>
+          </FadeIn>
           
-          <div className="text-center mt-8">
+          <FadeIn delay={0.2} className="text-center mt-8">
             <Link
               href="/success-stories"
               className="inline-flex items-center gap-2 text-gold hover:text-navy font-semibold transition-colors"
             >
               Read More Success Stories <ArrowRight size={20} />
             </Link>
-          </div>
+          </FadeIn>
         </div>
       </section>
 

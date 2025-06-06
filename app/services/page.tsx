@@ -1,5 +1,4 @@
-import { BookOpen, Users, Clock, CheckSquare, MessageSquare, Globe, School, FileText } from 'lucide-react';
-import ServiceCard from '../components/ServiceCard';
+import { Users, CheckSquare, MessageSquare, Globe, School, FileText } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

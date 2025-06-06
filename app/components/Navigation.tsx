@@ -13,6 +13,8 @@ const navItems = [
   { href: '/contact', label: 'Contact' },
 ];
 
+import { ProgressBar } from './ui/progress-bar';
+
 export default function Navigation() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -28,7 +30,8 @@ export default function Navigation() {
   }, []);
 
   return (
-    <nav
+    <>
+      <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'
       }`}
@@ -93,5 +96,7 @@ export default function Navigation() {
         </div>
       </div>
     </nav>
+    <ProgressBar />
+    </>
   );
 }

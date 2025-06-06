@@ -1,6 +1,7 @@
 import ContactForm from '../components/ContactForm';
 import { Mail, MessageCircle, Clock, ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
+import { FadeIn } from '../components/ui/fade-in';
 
 export const metadata: Metadata = {
   title: 'Contact Aulawell - Book Your Free Consultation',
@@ -13,11 +14,15 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="bg-gray-50 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold text-navy mb-6">Let's Discuss Your Child's Success</h1>
-          <p className="text-xl text-gray-700">
-            Getting started is simple. Complete the form below with your needs, and I'll respond 
-            with personalized recommendations within 24 hours.
-          </p>
+          <FadeIn>
+            <h1 className="text-4xl font-bold text-navy mb-6">Let's Discuss Your Child's Success</h1>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <p className="text-xl text-gray-700">
+              Getting started is simple. Complete the form below with your needs, and I'll respond 
+              with personalized recommendations within 24 hours.
+            </p>
+          </FadeIn>
         </div>
       </section>
 
@@ -27,9 +32,11 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Form */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-lg shadow-lg p-8">
-                <ContactForm />
-              </div>
+              <FadeIn>
+                <div className="bg-white rounded-lg shadow-lg p-8">
+                  <ContactForm />
+                </div>
+              </FadeIn>
             </div>
             
             {/* Direct Contact Options */}

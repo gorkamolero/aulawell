@@ -14,7 +14,7 @@ export default function ServiceCard({
   icon,
 }: ServiceCardProps) {
   return (
-    <div className="group bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6 h-full flex flex-col">
+    <div className="group bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 p-6 h-full flex flex-col hover:-translate-y-1 border border-transparent hover:border-gold/20">
       {icon && (
         <div className="w-12 h-12 bg-navy text-white rounded-full flex items-center justify-center mb-4 group-hover:bg-gold transition-colors duration-300">
           {icon}

@@ -1,5 +1,7 @@
 import { CheckCircle, GraduationCap, Award, BookOpen } from 'lucide-react';
 import type { Metadata } from 'next';
+import { FadeIn } from '../components/ui/fade-in';
+import { ParallaxSection } from '../components/ui/parallax-section';
 
 export const metadata: Metadata = {
   title: 'About Amy - Current Examiner & Expert Tutor | Aulawell',
@@ -12,19 +14,24 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="bg-gray-50 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-navy mb-6 text-center">
-            Your Examiner-Insight Advantage for International Success
-          </h1>
+          <FadeIn>
+            <h1 className="text-4xl font-bold text-navy mb-6 text-center">
+              Your Examiner-Insight Advantage for International Success
+            </h1>
+          </FadeIn>
         </div>
       </section>
 
       {/* Opening Section */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-navy mb-6">
-            From Britain's Top Schools to Your Child's Success
-          </h2>
-          <div className="space-y-4 text-lg">
+          <FadeIn>
+            <h2 className="text-3xl font-bold text-navy mb-6">
+              From Britain's Top Schools to Your Child's Success
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <div className="space-y-4 text-lg">
             <p>
               I'm Amy, and I bring something unique to international education: current examiner 
               experience combined with over a decade teaching in Britain's leading independent schools.
@@ -34,17 +41,21 @@ export default function AboutPage() {
               just prepare students for exams—I know exactly what examiners are looking for and how 
               to deliver it.
             </p>
-          </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* My Story */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-navy mb-6">
-            From Russell Group to Global Classroom
-          </h2>
-          <div className="space-y-4 text-lg">
+          <FadeIn>
+            <h2 className="text-3xl font-bold text-navy mb-6">
+              From Russell Group to Global Classroom
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <div className="space-y-4 text-lg">
             <p>
               My journey began at one of the UK's top Russell Group universities, followed by earning 
               my QTS (Qualified Teacher Status) and CELTA certification. But it was my years in 
@@ -59,17 +70,21 @@ export default function AboutPage() {
               Now, as both a teacher and examiner, I offer something invaluable—insider knowledge that 
               turns good answers into top-band responses.
             </p>
-          </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* Why Aulawell */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-navy mb-6">
-            Because Examiner Insight Makes the Difference
-          </h2>
-          <div className="space-y-4 text-lg">
+          <FadeIn>
+            <h2 className="text-3xl font-bold text-navy mb-6">
+              Because Examiner Insight Makes the Difference
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <div className="space-y-4 text-lg">
             <p>
               "Aula" means classroom in Spanish, and "well" represents excellence in education. 
               Aulawell was born from a simple observation: even the best students struggle without 
@@ -81,49 +96,60 @@ export default function AboutPage() {
               separate 7s from 9s? That's where my dual perspective as teacher and examiner becomes 
               your child's secret weapon.
             </p>
-          </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* My Approach */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-navy mb-12 text-center">
-            Three Pillars of Excellence
-          </h2>
+          <ParallaxSection offset={30}>
+            <FadeIn>
+              <h2 className="text-3xl font-bold text-navy mb-12 text-center">
+                Three Pillars of Excellence
+              </h2>
+            </FadeIn>
+          </ParallaxSection>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-navy rounded-full flex items-center justify-center mx-auto mb-4">
-                <BookOpen className="text-white w-8 h-8" />
+            <FadeIn delay={0.1}>
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-navy rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold transition-colors duration-300">
+                  <BookOpen className="text-white w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-bold text-navy mb-3">Examiner Intelligence</h3>
+                <p>
+                  I decode mark schemes, assessment objectives, and the subtle differences between 
+                  good and exceptional answers. Your child learns to think like an examiner.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-navy mb-3">Examiner Intelligence</h3>
-              <p>
-                I decode mark schemes, assessment objectives, and the subtle differences between 
-                good and exceptional answers. Your child learns to think like an examiner.
-              </p>
-            </div>
+            </FadeIn>
             
-            <div className="text-center">
-              <div className="w-16 h-16 bg-navy rounded-full flex items-center justify-center mx-auto mb-4">
-                <GraduationCap className="text-white w-8 h-8" />
+            <FadeIn delay={0.2}>
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-navy rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold transition-colors duration-300">
+                  <GraduationCap className="text-white w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-bold text-navy mb-3">Elite School Standards</h3>
+                <p>
+                  Having taught in Britain's top independent schools, I bring those same high 
+                  expectations and proven methodologies to every student.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-navy mb-3">Elite School Standards</h3>
-              <p>
-                Having taught in Britain's top independent schools, I bring those same high 
-                expectations and proven methodologies to every student.
-              </p>
-            </div>
+            </FadeIn>
             
-            <div className="text-center">
-              <div className="w-16 h-16 bg-navy rounded-full flex items-center justify-center mx-auto mb-4">
-                <Award className="text-white w-8 h-8" />
+            <FadeIn delay={0.3}>
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-navy rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold transition-colors duration-300">
+                  <Award className="text-white w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-bold text-navy mb-3">Personalised Pathways</h3>
+                <p>
+                  From beginners finding their voice to sixth-formers crafting university applications, 
+                  I design programmes that challenge while building confidence.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-navy mb-3">Personalised Pathways</h3>
-              <p>
-                From beginners finding their voice to sixth-formers crafting university applications, 
-                I design programmes that challenge while building confidence.
-              </p>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -144,10 +170,12 @@ export default function AboutPage() {
               "University Success - Students accepted to Oxford, Cambridge, LSE, Imperial, and Ivy League",
               "Enhanced DBS Checked - Full clearance for child safety"
             ].map((credential, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <CheckCircle className="text-gold w-5 h-5 flex-shrink-0 mt-1" />
-                <p>{credential}</p>
-              </div>
+              <FadeIn key={index} delay={index * 0.05}>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="text-gold w-5 h-5 flex-shrink-0 mt-1" />
+                  <p>{credential}</p>
+                </div>
+              </FadeIn>
             ))}
           </div>
         </div>

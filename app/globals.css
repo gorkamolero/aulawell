@@ -36,4 +36,31 @@ h1, h2, h3, h4, h5, h6 {
   .text-balance {
     text-wrap: balance;
   }
+  
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%) skewX(-12deg);
+    }
+    100% {
+      transform: translateX(200%) skewX(-12deg);
+    }
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 2s ease-out;
+  }
+  
+  @keyframes gradient-xy {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  .animate-gradient-xy {
+    background-size: 200% 200%;
+    animation: gradient-xy 3s ease infinite;
+  }
 }
