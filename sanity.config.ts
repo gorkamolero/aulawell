@@ -23,7 +23,7 @@ export default defineConfig({
     visionTool(),
     presentationTool({
       previewUrl: {
-        origin: process.env.SANITY_STUDIO_PREVIEW_ORIGIN,
+        origin: process.env.NEXT_PUBLIC_SANITY_STUDIO_PREVIEW_ORIGIN || 'http://localhost:8500',
         preview: '/',
         previewMode: {
           enable: '/api/draft-mode/enable',
