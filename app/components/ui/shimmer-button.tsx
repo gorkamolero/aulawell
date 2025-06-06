@@ -14,7 +14,7 @@ export function ShimmerButton({
   className,
   ...props 
 }: ShimmerButtonProps) {
-  const baseStyles = "relative inline-flex items-center justify-center px-8 py-3 rounded-md font-semibold transition-all duration-200 overflow-hidden group";
+  const baseStyles = "relative inline-flex items-center justify-center px-8 py-3 rounded-md font-semibold transition-all duration-150 overflow-hidden group";
   
   const variants = {
     primary: "bg-gold text-navy hover:bg-gold/90",
@@ -27,7 +27,7 @@ export function ShimmerButton({
       {...props}
     >
       <span className="relative z-10">{children}</span>
-      <div className="absolute inset-0 -top-[2px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 -skew-x-12 group-hover:animate-shimmer" />
+      <div className="absolute inset-0 -top-[2px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -skew-x-12 group-hover:animate-shimmer" />
     </button>
   );
 }

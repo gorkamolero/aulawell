@@ -13,7 +13,7 @@ interface FadeInProps {
 export function FadeIn({ 
   children, 
   delay = 0, 
-  duration = 0.5,
+  duration = 0.375,
   className = '' 
 }: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null);

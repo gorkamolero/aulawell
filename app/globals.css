@@ -47,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .animate-shimmer {
-    animation: shimmer 2s ease-out;
+    animation: shimmer 1.5s ease-out;
   }
   
   @keyframes gradient-xy {
@@ -61,6 +61,6 @@ h1, h2, h3, h4, h5, h6 {
   
   .animate-gradient-xy {
     background-size: 200% 200%;
-    animation: gradient-xy 3s ease infinite;
+    animation: gradient-xy 2.25s ease infinite;
   }
 }
