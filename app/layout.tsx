@@ -35,11 +35,14 @@ export const metadata: Metadata = {
   },
 };
 
+import { VisualEditing } from "next-sanity";
+import { draftMode } from "next/headers";
+import { DisableDraftMode } from "./components/DisableDraftMode";
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -55,6 +58,12 @@ export default function RootLayout({
         </main>
         <Footer />
         <WhatsAppButton />
+        {(await draftMode()).isEnabled && (
+          <>
+            <VisualEditing />
+            <DisableDraftMode />
+          </>
+        )}
       </body>
     </html>
   );

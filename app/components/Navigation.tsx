@@ -96,7 +96,7 @@ export default function Navigation() {
         </div>
       </div>
     </nav>
-    <ProgressBar />
+    {pathname === '/' && <ProgressBar />}
     </>
   );
 }

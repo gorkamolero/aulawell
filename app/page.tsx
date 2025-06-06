@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import { CheckCircle, ArrowRight, GraduationCap } from 'lucide-react';
+import { defineQuery } from "next-sanity";
+import { draftMode } from "next/headers";
+import { client } from "@/src/sanity/client";
 import ServiceCard from './components/ServiceCard';
 import { FadeIn } from './components/ui/fade-in';
 import { ShimmerButton } from './components/ui/shimmer-button';
@@ -10,7 +13,28 @@ import { ParallaxSection } from './components/ui/parallax-section';
 import { StatsSection } from './components/ui/stats-section';
 import { ScrollIndicator } from './components/ui/scroll-indicator';
 
-export default function Home() {
+const query = defineQuery(`*[_type == "testimonial" && featured == true][0...3]{
+  _id,
+  name,
+  role,
+  content,
+  rating
+}`);
+
+export default async function Home() {
+  const { isEnabled } = await draftMode();
+
+  const _testimonials = await client.fetch(
+    query,
+    {},
+    isEnabled
+      ? {
+          perspective: "previewDrafts",
+          useCdn: false,
+          stega: true,
+        }
+      : undefined
+  );
   return (
     <>
       {/* Hero Section */}
