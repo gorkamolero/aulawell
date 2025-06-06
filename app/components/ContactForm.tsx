@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 interface FormData {
   firstName: string;
@@ -22,7 +21,6 @@ interface FormData {
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
 
   const {
     register,
@@ -32,11 +30,6 @@ export default function ContactForm() {
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
-    if (!captchaValue) {
-      alert('Please complete the CAPTCHA');
-      return;
-    }
-
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
@@ -46,16 +39,12 @@ export default function ContactForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...data,
-          captcha: captchaValue,
-        }),
+        body: JSON.stringify(data),
       });
 
       if (response.ok) {
         setSubmitStatus('success');
         reset();
-        setCaptchaValue(null);
       } else {
         setSubmitStatus('error');
       }
@@ -199,14 +188,6 @@ export default function ContactForm() {
         </div>
       </div>
 
-      {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
-        <div className="flex justify-center">
-          <ReCAPTCHA
-            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-            onChange={setCaptchaValue}
-          />
-        </div>
-      )}
 
       <button
         type="submit"

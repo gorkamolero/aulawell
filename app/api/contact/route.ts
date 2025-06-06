@@ -4,26 +4,6 @@ export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
     
-    // Verify reCAPTCHA if configured
-    if (process.env.RECAPTCHA_SECRET_KEY && data.captcha) {
-      const recaptchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${data.captcha}`,
-      });
-      
-      const recaptchaData = await recaptchaResponse.json();
-      
-      if (!recaptchaData.success) {
-        return NextResponse.json(
-          { error: 'reCAPTCHA verification failed' },
-          { status: 400 }
-        );
-      }
-    }
-    
     // Format the email content
     const emailContent = `
 New Contact Form Submission from Aulawell Website

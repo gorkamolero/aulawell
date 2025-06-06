@@ -32,9 +32,8 @@ A professional Next.js website for Aulawell, an elite tutoring service specializ
    ```
 
 4. Update `.env.local` with your values:
-   - `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`: Your Google reCAPTCHA site key
-   - `RECAPTCHA_SECRET_KEY`: Your Google reCAPTCHA secret key
-   - `NEXT_PUBLIC_WHATSAPP_NUMBER`: WhatsApp number for the floating button
+   - `NEXT_PUBLIC_WHATSAPP_NUMBER`: WhatsApp number for the floating button (e.g., 34123456789)
+   - `CONTACT_EMAIL`: Email address to receive form submissions
    - Additional email/Sanity CMS variables as needed
 
 ### Development
@@ -82,7 +81,7 @@ app/
 
 - ✅ Responsive design (mobile-first)
 - ✅ SEO optimized with metadata
-- ✅ Contact form with reCAPTCHA
+- ✅ Contact form with spam protection
 - ✅ WhatsApp floating button
 - ✅ Smooth animations
 - ✅ Accessibility features
