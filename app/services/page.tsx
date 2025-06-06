@@ -1,4 +1,5 @@
 import { Users, CheckSquare, MessageSquare, Globe, School, FileText } from 'lucide-react';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -11,14 +12,23 @@ export default function ServicesPage() {
     <>
       {/* Hero Section */}
       <section className="bg-gray-50 py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold text-navy mb-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-4xl font-bold text-navy mb-6 text-center">
             Comprehensive Support for International Academic Success
           </h1>
-          <p className="text-xl text-gray-700">
+          <p className="text-xl text-gray-700 text-center mb-8">
             Every international student's journey is unique. That's why Aulawell offers flexible, 
             personalized tutoring that adapts to your child's specific curriculum, learning style, and goals.
           </p>
+          
+          <div className="relative h-[400px] w-full rounded-xl overflow-hidden">
+            <Image
+              src="/images/online-tutoring.jpg"
+              alt="Online tutoring session"
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
       </section>
 

@@ -55,6 +55,18 @@ export default function AboutPage() {
               From Russell Group to Global Classroom
             </h2>
           </FadeIn>
+          
+          <FadeIn delay={0.1} className="mb-8">
+            <div className="relative h-[300px] w-full rounded-xl overflow-hidden">
+              <Image
+                src="/images/uk-university.jpg"
+                alt="Prestigious UK university campus"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </FadeIn>
+          
           <FadeIn delay={0.2}>
             <div className="space-y-4 text-lg">
             <p>
