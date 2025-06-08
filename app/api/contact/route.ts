@@ -105,6 +105,24 @@ export async function POST(request: NextRequest) {
       // You might want to log this to a monitoring service
     }
     
+    // Trigger email automation sequence
+    try {
+      const { triggerEmailSequence } = await import('@/lib/email/automation')
+      await triggerEmailSequence({
+        type: 'contact_form',
+        recipientEmail: data.email,
+        variables: {
+          parentName,
+          studentName,
+          email: data.email,
+          phone: data.phone || '',
+        }
+      })
+    } catch (automationError) {
+      console.error('Email automation error:', automationError)
+      // Don't fail the request if automation fails
+    }
+    
     return NextResponse.json(
       { message: 'Form submitted successfully' },
       { status: 200 }
