@@ -3,13 +3,29 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import { FadeIn } from '../components/ui/fade-in';
 import { ParallaxSection } from '../components/ui/parallax-section';
+import FAQSection, { staticFAQs } from '../components/FAQSection';
+import { client } from '@/sanity/lib/client';
+import { faqsQuery } from '@/sanity/lib/queries';
+import { FAQ } from '@/sanity/lib/types';
 
 export const metadata: Metadata = {
   title: 'About Amy - Current Examiner & Expert Tutor | Aulawell',
   description: 'Learn about Amy, a current AQA & Cambridge examiner with 10+ years teaching in UK leading independent schools. Discover the examiner advantage for your child.',
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  // Fetch FAQs from Sanity, fallback to static if none
+  let faqs: FAQ[] = []
+  try {
+    faqs = await client.fetch<FAQ[]>(faqsQuery)
+  } catch (error) {
+    console.error('Error fetching FAQs:', error)
+  }
+  
+  // Use static FAQs if no CMS content
+  if (!faqs || faqs.length === 0) {
+    faqs = staticFAQs
+  }
   return (
     <>
       {/* Hero Section */}
@@ -259,6 +275,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQSection faqs={faqs} />
     </>
   );
 }

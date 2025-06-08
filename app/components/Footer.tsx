@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram } from 'lucide-react';
 import { FadeIn } from './ui/fade-in';
 
 export default function Footer() {
@@ -68,10 +68,41 @@ export default function Footer() {
           <FadeIn delay={0.2}>
             <div>
               <h3 className="text-xl font-bold mb-6 text-gold">About Aulawell</h3>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-gray-400 leading-relaxed mb-6">
                 Expert British & American curriculum tutoring from a current AQA & Cambridge examiner. 
                 Helping international students excel in KS3, GCSE, IGCSE, A-Level, and IB.
               </p>
+              
+              {/* Social Media Links */}
+              <div className="flex gap-4">
+                <a
+                  href="https://www.linkedin.com/in/aulawell"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-gold transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={24} />
+                </a>
+                <a
+                  href="https://www.facebook.com/aulawell"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-gold transition-colors"
+                  aria-label="Facebook"
+                >
+                  <Facebook size={24} />
+                </a>
+                <a
+                  href="https://www.instagram.com/aulawell"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-gold transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram size={24} />
+                </a>
+              </div>
             </div>
           </FadeIn>
         </div>

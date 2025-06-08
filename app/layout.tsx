@@ -41,6 +41,7 @@ import { DisableDraftMode } from "./components/DisableDraftMode";
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import CookieConsent from './components/CookieConsent';
 
 export default async function RootLayout({
   children,
@@ -58,6 +59,7 @@ export default async function RootLayout({
         </main>
         <Footer />
         <WhatsAppButton />
+        <CookieConsent />
         {(await draftMode()).isEnabled && (
           <>
             <VisualEditing />
