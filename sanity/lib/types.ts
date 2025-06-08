@@ -106,3 +106,20 @@ export interface BlogPost {
     metaDescription?: string
   }
 }
+
+export interface EmailTemplate {
+  _id: string
+  name: string
+  slug: { current: string }
+  subject: string
+  preheader?: string
+  body: any[]
+  category: 'contact' | 'welcome' | 'followup' | 'onboarding' | 'notification'
+  variables?: string[]
+  sendDelay?: number
+  isActive: boolean
+  followUpTemplate?: {
+    _id: string
+    slug: { current: string }
+  }
+}

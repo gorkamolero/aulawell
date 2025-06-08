@@ -238,3 +238,38 @@ export const postBySlugQuery = groq`
     }
   }
 `
+
+// Email Templates
+export const emailTemplateQuery = groq`
+  *[_type == "emailTemplate" && slug.current == $slug && isActive == true][0] {
+    _id,
+    name,
+    subject,
+    preheader,
+    body,
+    category,
+    variables,
+    sendDelay,
+    followUpTemplate->{
+      _id,
+      slug
+    }
+  }
+`
+
+export const emailTemplatesByCategoryQuery = groq`
+  *[_type == "emailTemplate" && category == $category && isActive == true] | order(sendDelay asc) {
+    _id,
+    name,
+    slug,
+    subject,
+    preheader,
+    body,
+    variables,
+    sendDelay,
+    followUpTemplate->{
+      _id,
+      slug
+    }
+  }
+`

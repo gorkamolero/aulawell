@@ -4,6 +4,7 @@ import { successStory } from './successStory'
 import { aboutContent } from './aboutContent'
 import { faq } from './faq'
 import { blogPost } from './blogPost'
+import { emailTemplate } from './emailTemplate'
 
 export const schemaTypes = [
   testimonial,
@@ -12,4 +13,5 @@ export const schemaTypes = [
   aboutContent,
   faq,
   blogPost,
+  emailTemplate,
 ]
