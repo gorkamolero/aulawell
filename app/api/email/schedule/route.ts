@@ -53,13 +53,18 @@ export async function POST(request: NextRequest) {
         } else {
           // Send immediately
           try {
-            await resend.emails.send({
+            const { data: _data, error } = await resend.emails.send({
               from: emailData.from || 'Amy at Aulawell <amy@aulawell.com>',
               to: emailData.to,
               subject: emailData.subject,
               html: emailData.html,
               replyTo: emailData.replyTo,
             })
+            
+            if (error) {
+              console.error(`Failed to send email "${template.name}":`, error)
+              throw error
+            }
             scheduledEmails.push({
               template: template.name,
               sendDelay: 0,

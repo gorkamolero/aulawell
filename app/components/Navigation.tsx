@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
@@ -38,9 +39,16 @@ export default function Navigation() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link href="/" className="text-2xl font-bold text-navy">
-            Aulawell
+        <div className="flex justify-between items-center h-24">
+          <Link href="/" className="flex items-center">
+            <Image
+              src="https://cdn.sanity.io/images/b021mpru/production/338f6e32c6f43a8a97cad1d4e04bf4ae768e671c-612x408.png"
+              alt="Aulawell - Premium Educational Tutoring"
+              width={400}
+              height={120}
+              className="w-auto max-h-20"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}

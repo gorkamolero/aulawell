@@ -25,10 +25,10 @@ export function BaseEmailTemplate({ preheader, content }: BaseEmailTemplateProps
         <Container style={container}>
           <Section style={box}>
             <Img
-              src="https://aulawell.com/images/logo.png"
-              width="150"
-              height="50"
-              alt="Aulawell"
+              src="https://cdn.sanity.io/images/b021mpru/production/338f6e32c6f43a8a97cad1d4e04bf4ae768e671c-612x408.png"
+              width="240"
+              height="160"
+              alt="Aulawell - Premium Educational Tutoring"
               style={logo}
             />
             <Hr style={hr} />
@@ -69,6 +69,7 @@ const box = {
 const logo = {
   margin: '0 auto',
   marginBottom: '24px',
+  display: 'block' as const,
 }
 
 const hr = {

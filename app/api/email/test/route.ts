@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     
     switch (type) {
       case 'contact-admin':
-        emailSent = await resend.emails.send({
+        const { data: adminData, error: adminError } = await resend.emails.send({
           from: 'onboarding@resend.dev', // Use Resend's test domain
           to: recipientEmail,
           subject: 'TEST: New Contact Form Submission',
@@ -31,10 +31,20 @@ export async function POST(request: NextRequest) {
             message: 'This is a test message to preview the email template. The actual message would contain parent inquiries about tutoring services.',
           }),
         })
+        
+        if (adminError) {
+          console.error('Test admin email error:', adminError)
+          return NextResponse.json(
+            { error: 'Failed to send test admin email', details: adminError },
+            { status: 400 }
+          )
+        }
+        
+        emailSent = adminData
         break
         
       case 'contact-thank-you':
-        emailSent = await resend.emails.send({
+        const { data: thankYouData, error: thankYouError } = await resend.emails.send({
           from: 'onboarding@resend.dev', // Use Resend's test domain
           to: recipientEmail,
           subject: 'TEST: Thank you for contacting Aulawell',
@@ -43,6 +53,16 @@ export async function POST(request: NextRequest) {
             studentName: 'Test Student',
           }),
         })
+        
+        if (thankYouError) {
+          console.error('Test thank you email error:', thankYouError)
+          return NextResponse.json(
+            { error: 'Failed to send test thank you email', details: thankYouError },
+            { status: 400 }
+          )
+        }
+        
+        emailSent = thankYouData
         break
         
       case 'welcome-sequence':

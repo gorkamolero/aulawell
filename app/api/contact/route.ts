@@ -43,16 +43,21 @@ export async function POST(request: NextRequest) {
       
       if (adminEmailData) {
         // Send using Sanity template
-        await resend.emails.send({
+        const { data: _adminEmail, error: adminError } = await resend.emails.send({
           from: adminEmailData.from || 'Aulawell Contact Form <noreply@aulawell.com>',
           to: adminEmailData.to,
           subject: adminEmailData.subject,
           html: adminEmailData.html,
           replyTo: adminEmailData.replyTo,
         })
+        
+        if (adminError) {
+          console.error('Admin email error:', adminError)
+          throw adminError
+        }
       } else {
         // Fallback to React Email template
-        await resend.emails.send({
+        const { data: _adminEmail, error: adminError } = await resend.emails.send({
           from: 'onboarding@resend.dev', // Use Resend's test domain
           to: 'miller@bravura.studio', // Temporarily locked to verified email
           subject: `New Contact Form: ${subject}`,
@@ -65,6 +70,11 @@ export async function POST(request: NextRequest) {
             message: data.message,
           }),
         })
+        
+        if (adminError) {
+          console.error('Admin email error:', adminError)
+          throw adminError
+        }
       }
       
       // Try to send thank you email to the user
@@ -79,16 +89,21 @@ export async function POST(request: NextRequest) {
       
       if (thankYouEmailData) {
         // Send using Sanity template
-        await resend.emails.send({
+        const { data: _thankYouEmail, error: thankYouError } = await resend.emails.send({
           from: thankYouEmailData.from || 'Amy at Aulawell <amy@aulawell.com>',
           to: thankYouEmailData.to,
           subject: thankYouEmailData.subject,
           html: thankYouEmailData.html,
           replyTo: thankYouEmailData.replyTo,
         })
+        
+        if (thankYouError) {
+          console.error('Thank you email error:', thankYouError)
+          throw thankYouError
+        }
       } else {
         // Fallback to React Email template
-        await resend.emails.send({
+        const { data: _thankYouEmail, error: thankYouError } = await resend.emails.send({
           from: 'onboarding@resend.dev', // Use Resend's test domain
           to: data.email,
           subject: 'Thank you for contacting Aulawell',
@@ -97,6 +112,11 @@ export async function POST(request: NextRequest) {
             studentName,
           }),
         })
+        
+        if (thankYouError) {
+          console.error('Thank you email error:', thankYouError)
+          throw thankYouError
+        }
       }
       
     } catch (emailError) {
@@ -107,7 +127,7 @@ export async function POST(request: NextRequest) {
     
     // Trigger email automation sequence
     try {
-      const { triggerEmailSequence } = await import('@/lib/email/automation')
+      const { triggerEmailSequence } = await import('@/lib/email/simple-automation')
       await triggerEmailSequence({
         type: 'contact_form',
         recipientEmail: data.email,
