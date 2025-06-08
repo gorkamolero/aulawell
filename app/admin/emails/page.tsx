@@ -1,7 +1,7 @@
-'use client'
+"use client"
 
-import { useState, useEffect } from 'react'
-import { Mail, Send, Clock, CheckCircle, AlertCircle } from 'lucide-react'
+import { useState, useEffect } from "react"
+import { Mail, Send, Clock, CheckCircle, AlertCircle } from "lucide-react"
 
 interface EmailTemplate {
   name: string
@@ -10,12 +10,23 @@ interface EmailTemplate {
   emails?: string[]
 }
 
+interface EmailResult {
+  status: "sent" | "failed"
+  name?: string
+  error?: string
+  id?: string
+}
+
 export default function EmailAdminPage() {
   const [templates, setTemplates] = useState<Record<string, EmailTemplate>>({})
-  const [testEmail, setTestEmail] = useState('')
-  const [selectedType, setSelectedType] = useState('contact-admin')
+  const [_testEmail, _setTestEmail] = useState("")
+  const [selectedType, setSelectedType] = useState("contact-admin")
   const [loading, setLoading] = useState(false)
-  const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
+  const [demoLoading, setDemoLoading] = useState(false)
+  const [message, setMessage] = useState<{
+    type: "success" | "error"
+    text: string
+  } | null>(null)
 
   useEffect(() => {
     fetchTemplates()
@@ -23,11 +34,11 @@ export default function EmailAdminPage() {
 
   const fetchTemplates = async () => {
     try {
-      const response = await fetch('/api/email/test')
+      const response = await fetch("/api/email/test")
       const data = await response.json()
       setTemplates(data)
     } catch {
-      console.error('Failed to fetch templates')
+      console.error("Failed to fetch templates")
     }
   }
 
@@ -36,32 +47,107 @@ export default function EmailAdminPage() {
     setMessage(null)
 
     try {
-      const response = await fetch('/api/email/test', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: selectedType
+      // Handle welcome-sequence differently - call the demo sequence API
+      if (selectedType === "welcome-sequence") {
+        const response = await fetch("/api/email/demo-sequence", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            parentName: "Demo Parent",
+            studentName: "Demo Student",
+          }),
         })
+
+        const data = await response.json()
+
+        if (response.ok) {
+          const successCount = data.results.filter(
+            (r: EmailResult) => r.status === "sent"
+          ).length
+          setMessage({
+            type: "success",
+            text: `Demo sequence completed! ${successCount}/3 emails sent successfully.`,
+          })
+        } else {
+          setMessage({
+            type: "error",
+            text: data.error || "Failed to send demo sequence",
+          })
+        }
+      } else {
+        // Handle other email types normally
+        const response = await fetch("/api/email/test", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: selectedType,
+          }),
+        })
+
+        const data = await response.json()
+
+        if (response.ok) {
+          setMessage({
+            type: "success",
+            text: "Test email sent successfully to miller@bravura.studio!",
+          })
+        } else {
+          setMessage({
+            type: "error",
+            text: data.error || "Failed to send email",
+          })
+        }
+      }
+    } catch {
+      setMessage({ type: "error", text: "Network error. Please try again." })
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const sendDemoSequence = async () => {
+    setDemoLoading(true)
+    setMessage(null)
+
+    try {
+      const response = await fetch("/api/email/demo-sequence", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          parentName: "Demo Parent",
+          studentName: "Demo Student",
+        }),
       })
 
       const data = await response.json()
 
       if (response.ok) {
-        setMessage({ type: 'success', text: 'Test email sent successfully to miller@bravura.studio!' })
+        const successCount = data.results.filter(
+          (r: EmailResult) => r.status === "sent"
+        ).length
+        setMessage({
+          type: "success",
+          text: `Demo sequence completed! ${successCount}/3 emails sent successfully.`,
+        })
       } else {
-        setMessage({ type: 'error', text: data.error || 'Failed to send email' })
+        setMessage({
+          type: "error",
+          text: data.error || "Failed to send demo sequence",
+        })
       }
     } catch {
-      setMessage({ type: 'error', text: 'Network error. Please try again.' })
+      setMessage({ type: "error", text: "Network error. Please try again." })
     } finally {
-      setLoading(false)
+      setDemoLoading(false)
     }
   }
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-4xl mx-auto px-4">
-        <h1 className="text-3xl font-bold text-navy mb-8">Email System Admin</h1>
+        <h1 className="text-3xl font-bold text-navy mb-8">
+          Email System Admin
+        </h1>
 
         {/* Test Email Section */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
@@ -73,7 +159,9 @@ export default function EmailAdminPage() {
           <div className="space-y-4">
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
               <p className="text-sm text-amber-800">
-                <strong>Note:</strong> Test emails are currently locked to miller@bravura.studio due to Resend domain verification requirements.
+                <strong>Note:</strong> Test emails are currently locked to
+                miller@bravura.studio due to Resend domain verification
+                requirements.
               </p>
             </div>
 
@@ -101,7 +189,7 @@ export default function EmailAdminPage() {
                 </p>
                 {templates[selectedType].variables && (
                   <p className="text-xs text-gray-500">
-                    Variables: {templates[selectedType].variables?.join(', ')}
+                    Variables: {templates[selectedType].variables?.join(", ")}
                   </p>
                 )}
               </div>
@@ -112,14 +200,18 @@ export default function EmailAdminPage() {
               disabled={loading}
               className="w-full bg-gold text-navy font-bold py-3 px-6 rounded-lg hover:bg-gold/90 transition-colors disabled:opacity-50"
             >
-              {loading ? 'Sending...' : 'Send Test Email'}
+              {loading ? "Sending..." : "Send Test Email"}
             </button>
 
             {message && (
-              <div className={`p-4 rounded-lg flex items-center gap-2 ${
-                message.type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'
-              }`}>
-                {message.type === 'success' ? (
+              <div
+                className={`p-4 rounded-lg flex items-center gap-2 ${
+                  message.type === "success"
+                    ? "bg-green-50 text-green-800"
+                    : "bg-red-50 text-red-800"
+                }`}
+              >
+                {message.type === "success" ? (
                   <CheckCircle className="w-5 h-5" />
                 ) : (
                   <AlertCircle className="w-5 h-5" />
@@ -137,14 +229,17 @@ export default function EmailAdminPage() {
             Email Sequences
           </h2>
 
-          {templates['welcome-sequence'] && (
+          {templates["welcome-sequence"] && (
             <div className="space-y-3">
               <p className="text-gray-600 mb-4">
-                {templates['welcome-sequence'].description}
+                {templates["welcome-sequence"].description}
               </p>
               <div className="space-y-2">
-                {templates['welcome-sequence'].emails?.map((email, index) => (
-                  <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                {templates["welcome-sequence"].emails?.map((email, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg"
+                  >
                     <Clock className="w-4 h-4 text-gray-400" />
                     <span className="text-sm">{email}</span>
                   </div>
@@ -154,12 +249,45 @@ export default function EmailAdminPage() {
           )}
         </div>
 
+        {/* Demo Sequence Section */}
+        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <Mail className="w-5 h-5" />
+            Demo Email Sequence
+          </h2>
+
+          <div className="space-y-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+              <p className="text-sm text-blue-800">
+                <strong>Demo Mode:</strong> This will send all 3 welcome emails
+                with 5-10 second delays between them for testing purposes.
+              </p>
+            </div>
+
+            <button
+              onClick={sendDemoSequence}
+              disabled={demoLoading}
+              className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+            >
+              {demoLoading
+                ? "Sending Demo Sequence..."
+                : "Send Demo Email Sequence"}
+            </button>
+          </div>
+        </div>
+
         {/* Instructions */}
         <div className="mt-8 bg-blue-50 rounded-lg p-6">
-          <h3 className="font-semibold text-blue-900 mb-2">Setup Instructions</h3>
+          <h3 className="font-semibold text-blue-900 mb-2">
+            Setup Instructions
+          </h3>
           <ol className="list-decimal list-inside space-y-2 text-sm text-blue-800">
-            <li>Create email templates in Sanity Studio under "Email Templates"</li>
-            <li>Use the template slugs: contact-form-admin, contact-form-thank-you</li>
+            <li>
+              Create email templates in Sanity Studio under "Email Templates"
+            </li>
+            <li>
+              Use the template slugs: contact-form-admin, contact-form-thank-you
+            </li>
             <li>Test emails here before going live</li>
             <li>Monitor email performance in your Resend dashboard</li>
             <li>Set up webhook endpoint in Resend for tracking</li>
