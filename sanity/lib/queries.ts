@@ -138,6 +138,51 @@ export const faqsByCategoryQuery = groq`
 `
 
 // Blog Posts
+export const blogPostsQuery = groq`
+  *[_type == "blogPost"] | order(publishedAt desc, _createdAt desc) {
+    _id,
+    _createdAt,
+    title,
+    "slug": slug.current,
+    excerpt,
+    publishedAt,
+    categories,
+    readingTime,
+    featured,
+    "mainImage": mainImage.asset->url
+  }
+`
+
+export const featuredBlogPostsQuery = groq`
+  *[_type == "blogPost" && featured == true] | order(publishedAt desc, _createdAt desc) {
+    _id,
+    _createdAt,
+    title,
+    "slug": slug.current,
+    excerpt,
+    publishedAt,
+    readingTime,
+    "mainImage": mainImage.asset->url
+  }
+`
+
+export const blogPostBySlugQuery = groq`
+  *[_type == "blogPost" && slug.current == $slug][0] {
+    _id,
+    _createdAt,
+    title,
+    "slug": slug.current,
+    excerpt,
+    body,
+    publishedAt,
+    categories,
+    readingTime,
+    seo,
+    "mainImage": mainImage.asset->url
+  }
+`
+
+// Legacy post queries (keep for backward compatibility)
 export const postsQuery = groq`
   *[_type == "post"] | order(publishedAt desc) {
     _id,

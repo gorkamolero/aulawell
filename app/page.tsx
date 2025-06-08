@@ -4,6 +4,7 @@ import { CheckCircle, ArrowRight } from "lucide-react"
 import { defineQuery } from "next-sanity"
 import { draftMode } from "next/headers"
 import { client } from "@/src/sanity/client"
+import { Testimonial } from "@/sanity/lib/types"
 import ServiceCard from "./components/ServiceCard"
 import { FadeIn } from "./components/ui/fade-in"
 import { ShimmerButton } from "./components/ui/shimmer-button"
@@ -26,7 +27,7 @@ const query = defineQuery(`*[_type == "testimonial" && featured == true][0...3]{
 export default async function Home() {
   const { isEnabled } = await draftMode()
 
-  const _testimonials = await client.fetch(
+  const testimonials = await client.fetch<Testimonial[]>(
     query,
     {},
     isEnabled
@@ -225,17 +226,39 @@ export default async function Home() {
       {/* Stats Section */}
       <StatsSection />
 
-      {/* Featured Testimonial */}
+      {/* Featured Testimonials */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="max-w-4xl mx-auto">
-            <AnimatedTestimonialCard
-              quote="Amy transformed my daughter's approach to A-Level English Literature. As expat parents new to the British system, we were overwhelmed. Amy not only improved Sofia's grades from C to A*, but her examiner insight meant Sofia knew exactly what Cambridge wanted. Her understanding of both international perspectives and UK requirements is invaluable."
-              author="Maria & Carlos"
-              context="Parents of Sofia (now studying Medicine at UCL)"
-              rating={5}
-            />
-          </FadeIn>
+          {testimonials && testimonials.length > 0 ? (
+            <>
+              <FadeIn>
+                <h2 className="text-3xl font-bold text-center mb-12 text-navy">
+                  What Parents & Students Say
+                </h2>
+              </FadeIn>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                {testimonials.map((testimonial, index) => (
+                  <FadeIn key={testimonial._id} delay={index * 0.1}>
+                    <AnimatedTestimonialCard
+                      quote={testimonial.content}
+                      author={testimonial.name}
+                      context={testimonial.role}
+                      rating={testimonial.rating || 5}
+                    />
+                  </FadeIn>
+                ))}
+              </div>
+            </>
+          ) : (
+            <FadeIn className="max-w-4xl mx-auto">
+              <AnimatedTestimonialCard
+                quote="Amy transformed my daughter's approach to A-Level English Literature. As expat parents new to the British system, we were overwhelmed. Amy not only improved Sofia's grades from C to A*, but her examiner insight meant Sofia knew exactly what Cambridge wanted. Her understanding of both international perspectives and UK requirements is invaluable."
+                author="Maria & Carlos"
+                context="Parents of Sofia (now studying Medicine at UCL)"
+                rating={5}
+              />
+            </FadeIn>
+          )}
 
           <FadeIn delay={0.2} className="text-center mt-8">
             <Link

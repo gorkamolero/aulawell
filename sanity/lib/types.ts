@@ -86,3 +86,23 @@ export interface Post {
     metaDescription?: string
   }
 }
+
+export interface BlogPost {
+  _id: string
+  _createdAt: string
+  title: string
+  slug: {
+    current: string
+  }
+  excerpt?: string
+  body?: any[]
+  publishedAt?: string
+  categories?: string[]
+  readingTime?: number
+  featured?: boolean
+  mainImage?: any
+  seo?: {
+    metaTitle?: string
+    metaDescription?: string
+  }
+}
