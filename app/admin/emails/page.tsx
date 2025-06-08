@@ -19,10 +19,10 @@ interface EmailResult {
 
 export default function EmailAdminPage() {
   const [templates, setTemplates] = useState<Record<string, EmailTemplate>>({})
-  const [_testEmail, _setTestEmail] = useState("")
+
   const [selectedType, setSelectedType] = useState("contact-admin")
   const [loading, setLoading] = useState(false)
-  const [demoLoading, setDemoLoading] = useState(false)
+
   const [message, setMessage] = useState<{
     type: "success" | "error"
     text: string
@@ -102,43 +102,6 @@ export default function EmailAdminPage() {
       setMessage({ type: "error", text: "Network error. Please try again." })
     } finally {
       setLoading(false)
-    }
-  }
-
-  const sendDemoSequence = async () => {
-    setDemoLoading(true)
-    setMessage(null)
-
-    try {
-      const response = await fetch("/api/email/demo-sequence", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          parentName: "Demo Parent",
-          studentName: "Demo Student",
-        }),
-      })
-
-      const data = await response.json()
-
-      if (response.ok) {
-        const successCount = data.results.filter(
-          (r: EmailResult) => r.status === "sent"
-        ).length
-        setMessage({
-          type: "success",
-          text: `Demo sequence completed! ${successCount}/3 emails sent successfully.`,
-        })
-      } else {
-        setMessage({
-          type: "error",
-          text: data.error || "Failed to send demo sequence",
-        })
-      }
-    } catch {
-      setMessage({ type: "error", text: "Network error. Please try again." })
-    } finally {
-      setDemoLoading(false)
     }
   }
 
@@ -247,33 +210,6 @@ export default function EmailAdminPage() {
               </div>
             </div>
           )}
-        </div>
-
-        {/* Demo Sequence Section */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-            <Mail className="w-5 h-5" />
-            Demo Email Sequence
-          </h2>
-
-          <div className="space-y-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-              <p className="text-sm text-blue-800">
-                <strong>Demo Mode:</strong> This will send all 3 welcome emails
-                with 5-10 second delays between them for testing purposes.
-              </p>
-            </div>
-
-            <button
-              onClick={sendDemoSequence}
-              disabled={demoLoading}
-              className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
-            >
-              {demoLoading
-                ? "Sending Demo Sequence..."
-                : "Send Demo Email Sequence"}
-            </button>
-          </div>
         </div>
 
         {/* Instructions */}
