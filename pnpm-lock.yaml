@@ -14,6 +14,9 @@ importers:
       '@portabletext/to-html':
         specifier: ^2.0.14
         version: 2.0.14
+      '@portabletext/types':
+        specifier: ^2.0.13
+        version: 2.0.13
       '@react-email/components':
         specifier: ^0.0.41
         version: 0.0.41(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
