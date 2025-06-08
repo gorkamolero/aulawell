@@ -1,25 +1,84 @@
 import TestimonialCard from '../components/TestimonialCard';
 import { TrendingUp, Award, Users, Star } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
+import { client } from '@/sanity/lib/client';
+import { successStoriesQuery } from '@/sanity/lib/queries';
+import { SuccessStory } from '@/sanity/lib/types';
+import { urlFor } from '@/sanity/lib/image';
+import { FadeIn } from '../components/ui/fade-in';
 
 export const metadata: Metadata = {
   title: 'Success Stories & Results | Aulawell Tutoring',
   description: 'Real results from real families. Read how students improved from C to A*, achieved Oxbridge offers, and exceeded their academic goals with Aulawell tutoring.',
 };
 
-export default function SuccessStoriesPage() {
+export default async function SuccessStoriesPage() {
+  const stories = await client.fetch<SuccessStory[]>(successStoriesQuery);
   return (
     <>
       {/* Hero Section */}
       <section className="bg-gray-50 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold text-navy mb-6">Real Results from Real Families</h1>
-          <p className="text-xl text-gray-700">
-            Every grade improvement represents a child's increased confidence and a family's relief. 
-            Here are some of the journeys I've been privileged to be part of.
-          </p>
+          <FadeIn>
+            <h1 className="text-4xl font-bold text-navy mb-6">Real Results from Real Families</h1>
+            <p className="text-xl text-gray-700">
+              Every grade improvement represents a child's increased confidence and a family's relief. 
+              Here are some of the journeys I've been privileged to be part of.
+            </p>
+          </FadeIn>
         </div>
       </section>
+
+      {/* Dynamic Success Stories from CMS */}
+      {stories && stories.length > 0 && (
+        <section className="py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {stories.map((story, index) => (
+                <FadeIn key={story._id} delay={index * 0.1}>
+                  <Link href={`/success-stories/${story.slug}`}>
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full">
+                      {story.image && (
+                        <div className="relative h-48 w-full">
+                          <Image
+                            src={urlFor(story.image).width(400).height(300).url()}
+                            alt={story.title}
+                            fill
+                            className="object-cover hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                      )}
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold text-navy mb-2 hover:text-gold transition-colors">
+                          {story.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 mb-3">
+                          {story.studentName} • {story.grade}
+                        </p>
+                        {story.summary && (
+                          <p className="text-gray-700 mb-4 line-clamp-3">{story.summary}</p>
+                        )}
+                        {story.beforeAfterScores && (
+                          <div className="flex items-center gap-2 text-sm">
+                            <span className="text-gray-600">{story.beforeAfterScores.before}</span>
+                            <TrendingUp className="text-gold w-4 h-4" />
+                            <span className="font-bold text-gold">{story.beforeAfterScores.after}</span>
+                          </div>
+                        )}
+                        <p className="text-gold font-semibold mt-4 hover:text-navy transition-colors">
+                          Read Full Story →
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Story 1: Sofia */}
       <section className="py-16">

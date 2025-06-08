@@ -1,14 +1,20 @@
 import { Users, CheckSquare, MessageSquare, Globe, School, FileText } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 import { FadeIn } from '../components/ui/fade-in';
+import { client } from '@/sanity/lib/client';
+import { servicesQuery } from '@/sanity/lib/queries';
+import { Service } from '@/sanity/lib/types';
+import { urlFor } from '@/sanity/lib/image';
 
 export const metadata: Metadata = {
   title: 'Tutoring Services - GCSE, A-Level, IB & More | Aulawell',
   description: 'Expert tutoring services including GCSE, A-Level, IB, English as a Foreign Language, exam marking, and interview preparation. Online and in-person in Madrid.',
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services = await client.fetch<Service[]>(servicesQuery);
   return (
     <>
       {/* Hero Section */}
@@ -38,6 +44,60 @@ export default function ServicesPage() {
           </FadeIn>
         </div>
       </section>
+
+      {/* Dynamic Services from CMS */}
+      {services && services.length > 0 && (
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FadeIn>
+              <h2 className="text-3xl font-bold text-center text-navy mb-12">
+                Our Services
+              </h2>
+            </FadeIn>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <FadeIn key={service._id} delay={index * 0.1}>
+                  <Link href={`/services/${service.slug}`}>
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                      {service.image && (
+                        <div className="relative h-48 w-full">
+                          <Image
+                            src={urlFor(service.image).width(400).height(300).url()}
+                            alt={service.title}
+                            fill
+                            className="object-cover hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                      )}
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold text-navy mb-3 hover:text-gold transition-colors">
+                          {service.title}
+                        </h3>
+                        {service.description && (
+                          <p className="text-gray-600 mb-4 line-clamp-3">{service.description}</p>
+                        )}
+                        {service.features && service.features.length > 0 && (
+                          <ul className="text-sm text-gray-700 space-y-1">
+                            {service.features.slice(0, 3).map((feature, idx) => (
+                              <li key={idx} className="flex items-start gap-2">
+                                <CheckSquare className="text-gold w-4 h-4 flex-shrink-0 mt-0.5" />
+                                <span className="line-clamp-1">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                        <p className="text-gold font-semibold mt-4 hover:text-navy transition-colors">
+                          Learn More →
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Academic Tutoring */}
       <section className="py-16">
