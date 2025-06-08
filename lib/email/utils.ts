@@ -89,7 +89,7 @@ export async function prepareEmailFromTemplate(
     to: recipientEmail,
     subject,
     html,
-    from: 'Amy at Aulawell <amy@aulawell.com>',
+    from: 'onboarding@resend.dev', // Use Resend's test domain
     replyTo: 'amy@aulawell.com',
   }
 }

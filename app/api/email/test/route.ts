@@ -9,21 +9,17 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: NextRequest) {
   try {
-    const { type, recipientEmail } = await request.json()
+    const { type } = await request.json()
     
-    if (!recipientEmail) {
-      return NextResponse.json(
-        { error: 'Recipient email is required' },
-        { status: 400 }
-      )
-    }
+    // Temporarily locked to the API key owner's email
+    const recipientEmail = 'miller@bravura.studio'
     
     let emailSent
     
     switch (type) {
       case 'contact-admin':
         emailSent = await resend.emails.send({
-          from: 'Aulawell Contact Form <noreply@aulawell.com>',
+          from: 'onboarding@resend.dev', // Use Resend's test domain
           to: recipientEmail,
           subject: 'TEST: New Contact Form Submission',
           react: ContactFormEmail({
@@ -39,7 +35,7 @@ export async function POST(request: NextRequest) {
         
       case 'contact-thank-you':
         emailSent = await resend.emails.send({
-          from: 'Amy at Aulawell <amy@aulawell.com>',
+          from: 'onboarding@resend.dev', // Use Resend's test domain
           to: recipientEmail,
           subject: 'TEST: Thank you for contacting Aulawell',
           react: ThankYouEmail({

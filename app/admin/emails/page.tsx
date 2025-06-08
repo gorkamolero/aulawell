@@ -32,11 +32,6 @@ export default function EmailAdminPage() {
   }
 
   const sendTestEmail = async () => {
-    if (!testEmail) {
-      setMessage({ type: 'error', text: 'Please enter an email address' })
-      return
-    }
-
     setLoading(true)
     setMessage(null)
 
@@ -45,15 +40,14 @@ export default function EmailAdminPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          type: selectedType,
-          recipientEmail: testEmail
+          type: selectedType
         })
       })
 
       const data = await response.json()
 
       if (response.ok) {
-        setMessage({ type: 'success', text: 'Test email sent successfully!' })
+        setMessage({ type: 'success', text: 'Test email sent successfully to miller@bravura.studio!' })
       } else {
         setMessage({ type: 'error', text: data.error || 'Failed to send email' })
       }
@@ -77,17 +71,10 @@ export default function EmailAdminPage() {
           </h2>
 
           <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Recipient Email
-              </label>
-              <input
-                type="email"
-                value={testEmail}
-                onChange={(e) => setTestEmail(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent"
-                placeholder="your@email.com"
-              />
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
+              <p className="text-sm text-amber-800">
+                <strong>Note:</strong> Test emails are currently locked to miller@bravura.studio due to Resend domain verification requirements.
+              </p>
             </div>
 
             <div>

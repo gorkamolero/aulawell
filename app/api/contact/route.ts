@@ -53,8 +53,8 @@ export async function POST(request: NextRequest) {
       } else {
         // Fallback to React Email template
         await resend.emails.send({
-          from: 'Aulawell Contact Form <noreply@aulawell.com>',
-          to: process.env.CONTACT_EMAIL || 'amy@aulawell.com',
+          from: 'onboarding@resend.dev', // Use Resend's test domain
+          to: 'miller@bravura.studio', // Temporarily locked to verified email
           subject: `New Contact Form: ${subject}`,
           react: ContactFormEmail({
             parentName,
@@ -89,7 +89,7 @@ export async function POST(request: NextRequest) {
       } else {
         // Fallback to React Email template
         await resend.emails.send({
-          from: 'Amy at Aulawell <amy@aulawell.com>',
+          from: 'onboarding@resend.dev', // Use Resend's test domain
           to: data.email,
           subject: 'Thank you for contacting Aulawell',
           react: ThankYouEmail({
