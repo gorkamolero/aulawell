@@ -1,0 +1,46 @@
+---
+description: React component structure and patterns for Aulawell
+globs: app/components/**/*.tsx,app/**/components/**/*.tsx
+alwaysApply: false
+---
+
+# React Component Guidelines
+
+## Component Structure
+```tsx
+'use client' // Only when needed (state, effects, event handlers)
+
+import { useState } from 'react'
+import { ComponentProps } from 'lucide-react'
+
+interface ComponentNameProps {
+  // Define props with clear types
+}
+
+export default function ComponentName({ prop }: ComponentNameProps) {
+  // Component logic
+  return (
+    <div className="responsive-classes">
+      {/* JSX content */}
+    </div>
+  )
+}
+```
+
+## Component Categories
+- **Layout**: `Navigation`, `Footer`, `Layout`
+- **UI**: Reusable components in `/components/ui/`
+- **Forms**: `ContactForm` with React Hook Form
+- **Content**: `ServiceCard`, `TestimonialCard`, `BlogPostCard`
+- **Skeletons**: Loading states for all content components
+- **Animations**: Framer Motion components in `/components/ui/`
+
+## Best Practices
+- Functional components with hooks
+- `'use client'` directive only when necessary
+- Proper dependency arrays in useEffect
+- Memoization (`useMemo`, `useCallback`) for performance
+- Error boundaries for production resilience
+- Semantic HTML elements
+- Proper ARIA labels where needed
+- Keyboard navigation support

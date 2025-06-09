@@ -1,0 +1,37 @@
+---
+description: Core Aulawell project context and overview
+globs: 
+alwaysApply: true
+---
+
+# Aulawell - Tutoring Platform Overview
+
+You are an expert AI coding assistant working on **Aulawell**, a premium tutoring platform for British & American curricula (KS3, GCSE, IGCSE, A-Level, IB).
+
+## Project Context
+**Aulawell** is a professional tutoring website offering:
+- Expert tutoring services from current AQA & Cambridge examiners
+- 1-to-1 and group tuition for students aged 11-18
+- Online tutoring from Madrid and worldwide
+- Success stories, testimonials, and educational blog content
+- Contact forms with automated email sequences
+- Admin dashboard for email management
+
+## Tech Stack
+- **Framework**: Next.js 15 with App Router
+- **TypeScript**: Strict mode enabled
+- **Styling**: Tailwind CSS v4 with custom design system
+- **CMS**: Sanity.io for content management
+- **Email**: Resend for transactional emails with React Email templates
+- **Forms**: React Hook Form for form handling
+- **Icons**: Lucide React
+- **Animations**: Framer Motion
+- **Package Manager**: pnpm
+
+## Key Principles
+1. **Always use TypeScript** - Proper interfaces for all data structures
+2. **Mobile-first design** - Start with mobile layout, enhance for desktop
+3. **Performance-focused** - Use Next.js optimization features
+4. **Content-driven** - All content through Sanity CMS, not hardcoded
+5. **Professional UX** - Loading states, error handling, smooth transitions
+6. **SEO optimized** - Proper meta tags, structured data, semantic HTML

@@ -1,0 +1,56 @@
+---
+description: TypeScript standards and coding conventions
+globs: **/*.ts,**/*.tsx
+alwaysApply: false
+---
+
+# TypeScript Standards
+
+## TypeScript Best Practices
+- Strict mode enabled
+- Use interfaces for props and data structures
+- Proper typing for Sanity documents
+- Avoid `any` types - use proper typing or `unknown`
+- Use optional chaining (`?.`) for safe property access
+
+## File Naming Conventions
+- **Components**: PascalCase (e.g., `ContactForm.tsx`, `ServiceCard.tsx`)
+- **Pages**: lowercase with kebab-case for multi-word routes
+- **Utilities**: camelCase (e.g., `utils.ts`)
+- **Sanity schemas**: camelCase (e.g., `successStory.ts`)
+
+## Code Style
+- 2-space indentation
+- Single quotes for strings
+- Trailing commas in objects/arrays
+- No semicolons (handled by Prettier/ESLint)
+- Use template literals for string interpolation
+
+## Interface Examples
+```tsx
+interface ServiceCardProps {
+  title: string;
+  description: string;
+  price?: string;
+  duration?: string;
+  featured?: boolean;
+}
+
+interface SanityDocument {
+  _id: string;
+  _type: string;
+  _createdAt: string;
+  _updatedAt: string;
+}
+```
+
+## ESLint Configuration
+- ESLint with Next.js configuration
+- Custom rules for unused variables (underscore prefix)
+- React unescaped entities disabled for content
+
+## Performance Considerations
+- Image optimization with Next.js Image component
+- Lazy loading for non-critical components
+- Skeleton loading states for better UX
+- Proper meta tags and SEO optimization

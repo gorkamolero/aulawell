@@ -1,0 +1,51 @@
+---
+description: Sanity CMS integration patterns and schema guidelines
+globs: sanity/**/*.ts,lib/sanity.ts,app/**/sanity.ts
+alwaysApply: false
+---
+
+# Sanity CMS Integration
+
+## Sanity Integration Patterns
+- Schemas in `sanity/schemas/` with proper validation
+- GROQ queries defined in `lib/sanity.ts`
+- Client configured with CDN, preview tokens, and visual editing
+- Image URLs generated with custom `getImageUrl` helper
+
+## Schema Guidelines
+- Use camelCase for schema names (e.g., `successStory.ts`)
+- Proper validation rules for all fields
+- Clear field descriptions for content editors
+- Order fields logically for better UX
+
+## Content Management
+- All content managed through Sanity CMS
+- Preview mode for content editors
+- Visual editing integration
+- Structured data for SEO
+
+## GROQ Query Examples
+```javascript
+// Featured testimonials
+*[_type == "testimonial" && featured == true] | order(_createdAt desc)[0...3]
+
+// Services with full details
+*[_type == "service"] | order(order asc) {
+  _id,
+  title,
+  slug,
+  shortDescription,
+  fullDescription,
+  icon,
+  price,
+  duration,
+  features,
+  subjects,
+  featured
+}
+```
+
+## Image Handling
+- Use `getImageUrl()` helper for image URLs
+- Optimize images with proper dimensions
+- Include alt text for accessibility

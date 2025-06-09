@@ -1,0 +1,38 @@
+---
+description: API route patterns and email system integration
+globs: app/api/**/*.ts,app/api/**/*.tsx
+alwaysApply: false
+---
+
+# API Routes & Email System
+
+## API Route Patterns
+- Located in `app/api/` following App Router conventions
+- Handle errors gracefully with proper HTTP status codes
+- Use TypeScript interfaces for request/response types
+- Email APIs integrate with Resend service
+
+## Error Handling
+- Graceful degradation for failed API calls
+- User-friendly error messages
+- Console logging for development debugging
+- Proper HTTP status codes in API responses
+
+## Email System Integration
+### Email Templates
+- Built with React Email components
+- Templates stored in Sanity CMS for easy management
+- Automated sequences (welcome emails, contact confirmations)
+- Admin dashboard for testing and management
+
+### Email Types
+- **Contact form confirmations**: Sent to users
+- **Admin notifications**: Sent to tutors
+- **Welcome sequences**: Multi-step onboarding emails
+- **Test emails**: For development/testing
+
+## Environment Variables
+- `NEXT_PUBLIC_SANITY_PROJECT_ID`: Sanity project ID
+- `NEXT_PUBLIC_SANITY_DATASET`: Sanity dataset (production/development)
+- `SANITY_VIEWER_TOKEN`: Server-side Sanity token
+- `RESEND_API_KEY`: Email service API key

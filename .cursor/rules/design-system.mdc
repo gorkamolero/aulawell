@@ -1,0 +1,38 @@
+---
+description: Design system, colors, typography, and Tailwind CSS patterns
+globs: app/globals.css,**/*.tsx,**/*.ts
+alwaysApply: false
+---
+
+# Aulawell Design System
+
+## Color Palette
+- **Primary (Navy)**: `#1e3a5f` - Used for headers, CTAs, navigation
+- **Secondary (Gold)**: `#f59e0b` - Used for accents, highlights, buttons
+- **Background**: `#ffffff` (white)
+- **Foreground**: `#171717` (dark gray)
+
+## Typography
+- **Headings**: Playfair Display (serif) - `font-playfair`
+- **Body**: Inter (sans-serif) - `font-inter`
+- **Custom CSS properties**: Available as `--font-playfair`, `--font-inter`
+
+## Tailwind CSS Patterns
+- Use `clsx()` for conditional classes
+- Follow mobile-first responsive design
+- Consistent spacing using Tailwind's scale
+- Form inputs use `focus:ring-2 focus:ring-gold focus:border-transparent`
+- Loading states with skeleton components
+- Hover effects with `transition-all duration-200`
+
+## Responsive Breakpoints
+- `sm`: 640px and up
+- `md`: 768px and up
+- `lg`: 1024px and up
+- `xl`: 1280px and up
+
+## Mobile-First Approach
+- Design mobile layout first
+- Progressive enhancement for larger screens
+- Touch-friendly interface elements
+- Optimized images for different screen sizes
