@@ -10,6 +10,15 @@ interface EmailTemplate {
   emails?: string[]
 }
 
+interface EmailFlow {
+  _id: string
+  name: string
+  slug: { current: string }
+  description?: string
+  trigger: string
+  stepCount: number
+}
+
 interface EmailResult {
   status: "sent" | "failed"
   name?: string
@@ -19,6 +28,8 @@ interface EmailResult {
 
 export default function EmailAdminPage() {
   const [templates, setTemplates] = useState<Record<string, EmailTemplate>>({})
+  const [flows, setFlows] = useState<EmailFlow[]>([])
+  const [selectedFlow, setSelectedFlow] = useState("")
 
   const [selectedType, setSelectedType] = useState("contact-admin")
   const [loading, setLoading] = useState(false)
@@ -30,6 +41,7 @@ export default function EmailAdminPage() {
 
   useEffect(() => {
     fetchTemplates()
+    fetchFlows()
   }, [])
 
   const fetchTemplates = async () => {
@@ -39,6 +51,21 @@ export default function EmailAdminPage() {
       setTemplates(data)
     } catch {
       console.error("Failed to fetch templates")
+    }
+  }
+
+  const fetchFlows = async () => {
+    try {
+      const response = await fetch("/api/email/flow/test")
+      const data = await response.json()
+      if (data.flows) {
+        setFlows(data.flows)
+        if (data.flows.length > 0) {
+          setSelectedFlow(data.flows[0].slug.current)
+        }
+      }
+    } catch {
+      console.error("Failed to fetch email flows")
     }
   }
 
@@ -212,6 +239,93 @@ export default function EmailAdminPage() {
           )}
         </div>
 
+        {/* Email Flows Section */}
+        <div className="bg-white rounded-lg shadow-md p-6 mt-8">
+          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <Mail className="w-5 h-5" />
+            Email Flows (New!)
+          </h2>
+
+          {flows.length > 0 ? (
+            <div className="space-y-4">
+              <p className="text-gray-600">
+                Test the new email flow system that manages sequences of emails with timing and conditions.
+              </p>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Select Flow
+                </label>
+                <select
+                  value={selectedFlow}
+                  onChange={(e) => setSelectedFlow(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent"
+                >
+                  {flows.map((flow) => (
+                    <option key={flow._id} value={flow.slug.current}>
+                      {flow.name} ({flow.stepCount} steps)
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {selectedFlow && (
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  {flows.find(f => f.slug.current === selectedFlow)?.description && (
+                    <p className="text-sm text-gray-600 mb-2">
+                      {flows.find(f => f.slug.current === selectedFlow)?.description}
+                    </p>
+                  )}
+                  <p className="text-xs text-gray-500">
+                    Trigger: {flows.find(f => f.slug.current === selectedFlow)?.trigger}
+                  </p>
+                </div>
+              )}
+
+              <button
+                onClick={async () => {
+                  setLoading(true)
+                  setMessage(null)
+                  try {
+                    const response = await fetch("/api/email/flow/test", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        flowSlug: selectedFlow,
+                        recipientEmail: "miller@bravura.studio",
+                      }),
+                    })
+                    const data = await response.json()
+                    if (response.ok) {
+                      setMessage({
+                        type: "success",
+                        text: `Flow "${data.flow.name}" started! ${data.flow.steps} emails will be sent according to the flow timing.`,
+                      })
+                    } else {
+                      setMessage({
+                        type: "error",
+                        text: data.error || "Failed to start flow",
+                      })
+                    }
+                  } catch {
+                    setMessage({ type: "error", text: "Network error" })
+                  } finally {
+                    setLoading(false)
+                  }
+                }}
+                disabled={loading || !selectedFlow}
+                className="w-full bg-navy text-white font-bold py-3 px-6 rounded-lg hover:bg-navy/90 transition-colors disabled:opacity-50"
+              >
+                {loading ? "Starting Flow..." : "Test Email Flow"}
+              </button>
+            </div>
+          ) : (
+            <p className="text-gray-500">
+              No active email flows found. Create flows in Sanity Studio under "Email System → Email Flows".
+            </p>
+          )}
+        </div>
+
         {/* Instructions */}
         <div className="mt-8 bg-blue-50 rounded-lg p-6">
           <h3 className="font-semibold text-blue-900 mb-2">
@@ -219,15 +333,32 @@ export default function EmailAdminPage() {
           </h3>
           <ol className="list-decimal list-inside space-y-2 text-sm text-blue-800">
             <li>
-              Create email templates in Sanity Studio under "Email Templates"
+              Create email templates in Sanity Studio under "Email System → Email Templates"
             </li>
             <li>
               Use the template slugs: contact-form-admin, contact-form-thank-you
             </li>
-            <li>Test emails here before going live</li>
+            <li>
+              Create email flows in Sanity Studio under "Email System → Email Flows"
+            </li>
+            <li>
+              Email flows can have multiple steps with delays and conditions
+            </li>
+            <li>Test emails and flows here before going live</li>
             <li>Monitor email performance in your Resend dashboard</li>
             <li>Set up webhook endpoint in Resend for tracking</li>
           </ol>
+          
+          <div className="mt-4 p-4 bg-white rounded-lg">
+            <h4 className="font-semibold text-blue-900 mb-2">Email Flow Features:</h4>
+            <ul className="list-disc list-inside space-y-1 text-sm text-blue-800">
+              <li>Trigger flows based on contact form, welcome series, or manual triggers</li>
+              <li>Set delays between emails (minutes, hours, days, weeks)</li>
+              <li>Add conditions like "if previous email opened" or "if link clicked"</li>
+              <li>Skip weekends option for business hours delivery</li>
+              <li>Timezone support for scheduled emails</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
