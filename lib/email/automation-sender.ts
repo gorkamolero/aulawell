@@ -98,6 +98,41 @@ export async function triggerEmailSequence(trigger: EmailSequenceTrigger) {
   }
 }
 
+// Function to send email from a template (generic wrapper)
+export async function sendEmailFromTemplate(
+  templateSlug: string,
+  recipientEmail: string,
+  variables: Record<string, string> = {}
+) {
+  try {
+    const emailData = await prepareEmailFromTemplate(
+      templateSlug,
+      variables,
+      recipientEmail
+    )
+    
+    if (emailData) {
+      const { data, error } = await resend.emails.send({
+        from: emailData.from || 'Amy at Aulawell <amy@aulawell.com>',
+        to: emailData.to,
+        subject: emailData.subject,
+        html: emailData.html,
+        replyTo: emailData.replyTo,
+      })
+      
+      if (error) {
+        console.error(`Failed to send email from template ${templateSlug}:`, error)
+        throw error
+      }
+      
+      return data
+    }
+  } catch (error) {
+    console.error('Error sending email from template:', error)
+    throw error
+  }
+}
+
 // Function to send a scheduled email (called by cron job)
 export async function sendScheduledEmail(
   templateSlug: string,
