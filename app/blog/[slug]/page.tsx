@@ -7,7 +7,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { FadeIn } from '@/app/components/ui/fade-in'
-import { GridBackground } from '@/app/components/ui/grid-background'
 
 export async function generateStaticParams() {
   const posts = await client.fetch<BlogPost[]>(blogPostsQuery)
@@ -53,38 +52,37 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <article className="min-h-screen bg-white">
-      <GridBackground />
-
       {/* Hero Section with Featured Image */}
       {post.mainImage && (
-        <section className="relative h-[400px] md:h-[500px] overflow-hidden">
-          <Image
-            src={urlFor(post.mainImage).width(1920).height(500).url()}
-            alt={post.title}
-            fill
-            priority
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent" />
+        <section className="relative w-full">
+          <div className="relative aspect-[21/9] max-h-[480px] overflow-hidden">
+            <Image
+              src={urlFor(post.mainImage).width(1920).height(600).url()}
+              alt={post.title}
+              fill
+              priority
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent" />
+          </div>
           <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-            <div className="container mx-auto">
-              <FadeIn>
-                {post.categories && post.categories.length > 0 && (
+            <div className="max-w-6xl mx-auto px-4">
+              {post.categories && post.categories.length > 0 && (
                   <div className="flex gap-2 mb-4">
                     {post.categories.map((category) => (
                       <span
                         key={category}
-                        className="text-sm font-semibold text-navy bg-gold px-3 py-1 rounded"
+                        className="text-sm font-semibold text-navy bg-gold px-3 py-1 rounded shadow-md"
                       >
                         {category}
                       </span>
                     ))}
                   </div>
                 )}
-                <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-6 drop-shadow-lg leading-tight">
                   {post.title}
                 </h1>
-                <div className="flex items-center gap-4 text-white/90">
+                <div className="flex items-center gap-4 text-white/95 text-lg">
                   <time>
                     {new Date(post.publishedAt || post._createdAt).toLocaleDateString('en-US', {
                       year: 'numeric',
@@ -99,7 +97,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     </>
                   )}
                 </div>
-              </FadeIn>
             </div>
           </div>
         </section>
@@ -109,10 +106,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <section className="py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <FadeIn>
-              {/* No hero image fallback */}
-              {!post.mainImage && (
-                <div className="mb-8">
+            {/* No hero image fallback */}
+            {!post.mainImage && (
+              <div className="mb-8">
                   {post.categories && post.categories.length > 0 && (
                     <div className="flex gap-2 mb-4">
                       {post.categories.map((category) => (
@@ -125,10 +121,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                       ))}
                     </div>
                   )}
-                  <h1 className="text-3xl md:text-5xl font-bold text-navy mb-4">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-navy mb-6 leading-tight">
                     {post.title}
                   </h1>
-                  <div className="flex items-center gap-4 text-gray-600">
+                  <div className="flex items-center gap-4 text-gray-600 text-lg">
                     <time>
                       {new Date(post.publishedAt || post._createdAt).toLocaleDateString('en-US', {
                         year: 'numeric',
@@ -148,29 +144,37 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
               {/* Excerpt */}
               {post.excerpt && (
-                <p className="text-xl text-gray-600 mb-8 font-serif italic">
+                <p className="text-xl md:text-2xl text-gray-700 mb-12 font-serif italic leading-relaxed border-l-4 border-gold pl-6">
                   {post.excerpt}
                 </p>
               )}
 
               {/* Main Content */}
               {post.body && (
-                <div className="prose prose-lg max-w-none">
+                <div className="prose prose-lg md:prose-xl max-w-none 
+                  prose-headings:font-serif prose-headings:text-navy
+                  prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
+                  prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+                  prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6
+                  prose-strong:text-navy prose-strong:font-semibold
+                  prose-em:text-gray-800
+                  prose-blockquote:border-l-4 prose-blockquote:border-gold prose-blockquote:pl-6 prose-blockquote:italic
+                  prose-ul:my-6 prose-li:my-2
+                  prose-a:text-gold prose-a:no-underline hover:prose-a:underline">
                   <PortableTextRenderer content={post.body} />
                 </div>
               )}
 
               {/* Author Bio (Amy) */}
-              <div className="mt-12 p-6 bg-gray-50 rounded-lg">
-                <h3 className="text-lg font-bold text-navy mb-2">About Amy</h3>
-                <p className="text-gray-600">
-                  Amy is a UK-qualified teacher and current examiner for AQA and Cambridge, 
+              <div className="mt-16 p-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border border-gray-200">
+                <h3 className="text-xl font-serif font-bold text-navy mb-4">About the Author</h3>
+                <p className="text-gray-700 leading-relaxed text-lg">
+                  <strong className="text-navy">Amy Fernandez Kong</strong> is a UK-qualified teacher and current examiner for AQA and Cambridge, 
                   bringing insider knowledge that transforms good students into exceptional ones. 
                   Based in Madrid, she specializes in helping international students excel in 
                   British and American curricula.
                 </p>
               </div>
-            </FadeIn>
           </div>
         </div>
       </section>

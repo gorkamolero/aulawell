@@ -46,7 +46,7 @@ export default async function BlogPage() {
                 <FadeIn key={post._id} delay={index * 0.1}>
                   <article className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                     {post.mainImage && (
-                      <Link href={`/blog/${post.slug.current}`}>
+                      <Link href={`/blog/${post.slug?.current || 'undefined'}`}>
                         <div className="relative h-48 w-full">
                           <Image
                             src={urlFor(post.mainImage).width(600).height(400).url()}
@@ -70,7 +70,7 @@ export default async function BlogPage() {
                           ))}
                         </div>
                       )}
-                      <Link href={`/blog/${post.slug.current}`}>
+                      <Link href={`/blog/${post.slug?.current || 'undefined'}`}>
                         <h2 className="text-xl font-bold text-navy mb-3 hover:text-gold transition-colors">
                           {post.title}
                         </h2>
@@ -87,7 +87,7 @@ export default async function BlogPage() {
                           })}
                         </time>
                         <Link
-                          href={`/blog/${post.slug.current}`}
+                          href={`/blog/${post.slug?.current || 'undefined'}`}
                           className="text-gold font-semibold hover:text-gold/80 transition-colors"
                         >
                           Read More →

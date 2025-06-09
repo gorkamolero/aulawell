@@ -143,7 +143,7 @@ export const blogPostsQuery = groq`
     _id,
     _createdAt,
     title,
-    "slug": slug.current,
+    slug,
     excerpt,
     publishedAt,
     categories,
