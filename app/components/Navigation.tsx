@@ -39,14 +39,14 @@ export default function Navigation() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-24">
-          <Link href="/" className="flex items-center -my-8 -ml-4">
+        <div className="flex justify-between items-center h-16">
+          <Link href="/" className="flex items-center -my-10">
             <Image
               src="https://cdn.sanity.io/images/b021mpru/production/338f6e32c6f43a8a97cad1d4e04bf4ae768e671c-612x408.png"
               alt="Aulawell - Premium Educational Tutoring"
               width={240}
               height={160}
-              className="h-40 md:h-48 w-auto"
+              className="h-36 md:h-40 w-auto"
               priority
             />
           </Link>
@@ -104,8 +104,8 @@ export default function Navigation() {
           ))}
         </div>
       </div>
+      {pathname === '/' && <ProgressBar />}
     </nav>
-    {pathname === '/' && <ProgressBar />}
     </>
   );
 }
