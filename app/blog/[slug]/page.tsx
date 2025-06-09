@@ -62,11 +62,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
 
   return (
-    <article className="min-h-screen bg-white">
+    <article className="min-h-screen bg-white -mt-16 pt-20 md:pt-16">
       {/* Hero Section with Featured Image */}
       {post.mainImage && (
-        <section className="relative w-full -mt-16">
-          <div className="relative aspect-[21/9] max-h-[480px] overflow-hidden mt-16">
+        <section className="relative w-full">
+          <div className="relative aspect-[21/9] md:max-h-[480px] max-h-[300px] overflow-hidden">
             <Image
               src={urlFor(post.mainImage).width(1920).height(600).url()}
               alt={post.title}
