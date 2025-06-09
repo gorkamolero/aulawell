@@ -63,4 +63,54 @@ h1, h2, h3, h4, h5, h6 {
     background-size: 200% 200%;
     animation: gradient-xy 2.25s ease infinite;
   }
+
+  @keyframes fade-in {
+    0% { 
+      opacity: 0; 
+      transform: translateY(10px); 
+    }
+    100% { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+
+  /* Prevent layout shifts */
+  .image-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image-container::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0;
+    padding-bottom: var(--aspect-ratio, 56.25%); /* 16:9 default */
+  }
+
+  .image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* GPU acceleration for animations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Critical above-the-fold content */
+  .critical-resource {
+    contain: layout style paint;
+  }
 }

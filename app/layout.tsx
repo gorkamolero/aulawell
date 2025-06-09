@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
 import "./globals.css"
+import { ResourcePreloader } from "./components/ui/resource-preloader"
+import { PerformanceMonitor } from "./components/ui/performance-monitor"
 
 const inter = Inter({
   variable: "--font-inter",
@@ -54,6 +56,8 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${playfair.variable} antialiased`}>
+        <ResourcePreloader />
+        <PerformanceMonitor />
         <Navigation />
         <main className="pt-16 min-h-screen">{children}</main>
         <Footer />

@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Image from "next/image"
 import { CheckCircle, ArrowRight } from "lucide-react"
 import { defineQuery } from "next-sanity"
 import { draftMode } from "next/headers"
@@ -15,6 +14,8 @@ import { ParallaxSection } from "./components/ui/parallax-section"
 import { OptimizedParallax } from "./components/ui/optimized-parallax"
 import { StatsSection } from "./components/ui/stats-section"
 import { ScrollIndicator } from "./components/ui/scroll-indicator"
+import { OptimizedImage } from "./components/ui/image-optimization"
+import { LazyLoadWrapper } from "./components/ui/lazy-load-wrapper"
 
 const query = defineQuery(`*[_type == "testimonial" && featured == true][0...3]{
   _id,
@@ -126,12 +127,14 @@ export default async function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeIn>
               <div className="relative h-[400px] rounded-xl overflow-hidden">
-                <Image
+                <OptimizedImage
                   src="/images/tutor-teaching.jpg"
                   alt="Professional tutor providing personalized education"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
+                  priority
+                  placeholder="blur"
                 />
               </div>
             </FadeIn>
@@ -225,12 +228,15 @@ export default async function Home() {
       </section>
 
       {/* Stats Section */}
-      <StatsSection />
+      <LazyLoadWrapper>
+        <StatsSection />
+      </LazyLoadWrapper>
 
       {/* Featured Testimonials */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {testimonials && testimonials.length > 0 ? (
+      <LazyLoadWrapper fallback={<div className="h-96 bg-gray-50 animate-pulse" />}>
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {testimonials && testimonials.length > 0 ? (
             <>
               <FadeIn>
                 <h2 className="text-3xl font-bold text-center mb-12 text-navy">
@@ -295,6 +301,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
+      </LazyLoadWrapper>
     </>
   )
 }
