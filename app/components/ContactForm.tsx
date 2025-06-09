@@ -16,6 +16,7 @@ interface FormData {
     courses: boolean;
     examMarking: boolean;
     interviewPractice: boolean;
+    other: boolean;
   };
 }
 
@@ -349,6 +350,14 @@ export default function ContactForm() {
               className="rounded border-gray-300 text-gold focus:ring-gold mr-2"
             />
             <span className="text-sm text-gray-700">Interview Practice</span>
+          </label>
+          <label className="flex items-center">
+            <input
+              {...register('services.other')}
+              type="checkbox"
+              className="rounded border-gray-300 text-gold focus:ring-gold mr-2"
+            />
+            <span className="text-sm text-gray-700">None/Other (please specify in message)</span>
           </label>
         </div>
       </div>

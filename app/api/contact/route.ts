@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
     if (data.services.courses) servicesRequested.push('Courses')
     if (data.services.examMarking) servicesRequested.push('Exam Marking')
     if (data.services.interviewPractice) servicesRequested.push('Interview Practice')
+    if (data.services.other) servicesRequested.push('Other/General Inquiry')
     
     const subject = servicesRequested.length > 0 
       ? `Inquiry about ${servicesRequested.join(', ')}`
