@@ -104,7 +104,7 @@ export default function Navigation() {
           ))}
         </div>
       </div>
-      {pathname === '/' && <ProgressBar />}
+      {pathname === '/' && !isMobileMenuOpen && <ProgressBar />}
     </nav>
     </>
   );
