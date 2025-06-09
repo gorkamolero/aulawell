@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { CheckCircle, AlertCircle, Phone, Mail, User } from 'lucide-react';
+import { ErrorBoundaryWrapper } from './ui/error-boundary';
 
 interface FormData {
   firstName: string;
@@ -425,5 +426,44 @@ export default function ContactForm() {
         </div>
       )}
     </form>
+  );
+}
+
+// Wrap the ContactForm with ErrorBoundary for export
+export function ContactFormWithErrorBoundary() {
+  return (
+    <ErrorBoundaryWrapper
+      fallback={
+        <div className="min-h-[600px] flex items-center justify-center p-8">
+          <div className="text-center max-w-md mx-auto">
+            <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-red-100 to-red-50 flex items-center justify-center">
+              <Mail className="w-8 h-8 text-red-600" />
+            </div>
+            <h3 className="text-xl font-serif font-semibold text-navy mb-3">
+              Contact Form Unavailable
+            </h3>
+            <p className="text-gray-600 mb-6 leading-relaxed">
+              Our contact form is temporarily unavailable. Please reach out to us directly.
+            </p>
+            <div className="space-y-3">
+              <a
+                href="mailto:hello@aulawell.com"
+                className="block w-full px-6 py-3 bg-navy text-white rounded-lg hover:bg-navy/90 transition-colors font-medium"
+              >
+                Email us directly
+              </a>
+              <a
+                href="https://wa.me/34684150886"
+                className="block w-full px-6 py-3 border border-navy text-navy rounded-lg hover:bg-navy/5 transition-colors font-medium"
+              >
+                WhatsApp us
+              </a>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <ContactForm />
+    </ErrorBoundaryWrapper>
   );
 }

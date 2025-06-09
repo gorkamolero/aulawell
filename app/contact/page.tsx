@@ -1,4 +1,4 @@
-import ContactForm from '../components/ContactForm';
+import { ContactFormWithErrorBoundary } from '../components/ContactForm';
 import { Mail, MessageCircle, Clock, ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
 import { FadeIn } from '../components/ui/fade-in';
@@ -46,7 +46,7 @@ export default async function ContactPage() {
             <div className="lg:col-span-2">
               <FadeIn>
                 <div className="bg-white rounded-lg shadow-lg p-8">
-                  <ContactForm />
+                  <ContactFormWithErrorBoundary />
                 </div>
               </FadeIn>
             </div>
