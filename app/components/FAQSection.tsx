@@ -37,7 +37,10 @@ export default function FAQSection({ faqs, title = "Frequently Asked Questions" 
     services: 'Services',
     pricing: 'Pricing',
     scheduling: 'Scheduling',
-    'academic-support': 'Academic Support'
+    'academic-support': 'Academic Support',
+    curriculum: 'Curriculum',
+    online: 'Online Learning',
+    exams: 'Exam Preparation'
   }
 
   return (
@@ -49,30 +52,32 @@ export default function FAQSection({ faqs, title = "Frequently Asked Questions" 
 
         {Object.entries(groupedFaqs).map(([category, categoryFaqs], categoryIndex) => (
           <FadeIn key={category} delay={categoryIndex * 0.1}>
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold text-navy mb-4">
+            <div className="mb-10">
+              <h3 className="text-xl font-semibold text-navy mb-6 border-b border-gray-200 pb-2">
                 {categoryLabels[category as keyof typeof categoryLabels] || category}
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {categoryFaqs.map((faq) => (
                   <div
                     key={faq._id}
-                    className="bg-white rounded-lg shadow-md overflow-hidden"
+                    className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-200"
                   >
                     <button
                       onClick={() => toggleItem(faq._id)}
-                      className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+                      className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-opacity-50"
                     >
-                      <span className="font-medium text-gray-900">{faq.question}</span>
-                      {openItems.includes(faq._id) ? (
-                        <ChevronUp className="text-gold w-5 h-5 flex-shrink-0" />
-                      ) : (
-                        <ChevronDown className="text-gold w-5 h-5 flex-shrink-0" />
-                      )}
+                      <span className="font-medium text-gray-900 pr-4">{faq.question}</span>
+                      <div className="flex-shrink-0">
+                        {openItems.includes(faq._id) ? (
+                          <ChevronUp className="text-gold w-5 h-5 transform transition-transform duration-200" />
+                        ) : (
+                          <ChevronDown className="text-gold w-5 h-5 transform transition-transform duration-200" />
+                        )}
+                      </div>
                     </button>
                     {openItems.includes(faq._id) && (
-                      <div className="px-6 pb-4">
-                        <div className="prose prose-sm max-w-none text-gray-700">
+                      <div className="px-6 pb-5 border-t border-gray-100 bg-gray-50">
+                        <div className="pt-4 prose prose-sm max-w-none text-gray-700 leading-relaxed">
                           <PortableTextRenderer content={faq.answer} />
                         </div>
                       </div>
@@ -87,7 +92,10 @@ export default function FAQSection({ faqs, title = "Frequently Asked Questions" 
         {faqs.length === 0 && (
           <FadeIn>
             <div className="text-center py-12">
-              <p className="text-gray-600">No FAQs available at the moment.</p>
+              <div className="bg-gray-50 rounded-lg p-8">
+                <p className="text-gray-600 text-lg">No FAQs available at the moment.</p>
+                <p className="text-gray-500 text-sm mt-2">Please check back later or contact us directly.</p>
+              </div>
             </div>
           </FadeIn>
         )}
@@ -96,84 +104,3 @@ export default function FAQSection({ faqs, title = "Frequently Asked Questions" 
   )
 }
 
-// Static FAQ data for fallback
-export const staticFAQs: FAQ[] = [
-  {
-    _id: '1',
-    question: 'How do online tutoring sessions work?',
-    answer: [{
-      _type: 'block',
-      children: [{
-        _type: 'span',
-        text: 'We use Zoom for interactive online sessions. Students need a computer/tablet, stable internet, and a quiet space. I provide all materials digitally, use screen sharing for collaborative work, and sessions can be recorded for review.'
-      }]
-    }],
-    category: 'general',
-    order: 1
-  },
-  {
-    _id: '2',
-    question: 'What makes you different from other tutors?',
-    answer: [{
-      _type: 'block',
-      children: [{
-        _type: 'span',
-        text: 'As a current examiner for AQA and Cambridge, I provide insider knowledge that transforms good students into exceptional ones. I know exactly what examiners look for and can teach the specific techniques that earn top marks.'
-      }]
-    }],
-    category: 'general',
-    order: 2
-  },
-  {
-    _id: '3',
-    question: 'Which exam boards do you cover?',
-    answer: [{
-      _type: 'block',
-      children: [{
-        _type: 'span',
-        text: 'I specialize in all major UK exam boards including AQA, Edexcel, OCR, and Cambridge (CIE). I also support International Baccalaureate (IB) students. My examiner experience with AQA and Cambridge gives particular insight into these specifications.'
-      }]
-    }],
-    category: 'services',
-    order: 1
-  },
-  {
-    _id: '4',
-    question: 'What is your cancellation policy?',
-    answer: [{
-      _type: 'block',
-      children: [{
-        _type: 'span',
-        text: '24-hour notice is required for cancellations with no charge. I understand international families have complex schedules and handle emergencies flexibly. Sessions cancelled with less notice may be charged at 50% of the session rate.'
-      }]
-    }],
-    category: 'scheduling',
-    order: 1
-  },
-  {
-    _id: '5',
-    question: 'Do you offer trial sessions?',
-    answer: [{
-      _type: 'block',
-      children: [{
-        _type: 'span',
-        text: 'Yes! I offer a trial package of 3 sessions at 50% off the regular rate. This allows us to ensure we\'re a good fit and for me to assess your child\'s specific needs before committing to regular sessions.'
-      }]
-    }],
-    category: 'pricing',
-    order: 1
-  },
-  {
-    _id: '6',
-    question: 'How much homework do you set?',
-    answer: [{
-      _type: 'block',
-      children: [{
-        _type: 'span',
-        text: 'Homework is tailored to each student\'s needs and schedule. Typically, I set 1-2 hours of work between sessions, focusing on exam practice, essay writing, or specific skill development. The amount can be adjusted based on your child\'s other commitments.'
-      }]
-    }],
-    category: 'academic-support',
-    order: 1
-  }
-]

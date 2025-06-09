@@ -2,7 +2,7 @@ import ContactForm from '../components/ContactForm';
 import { Mail, MessageCircle, Clock, ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
 import { FadeIn } from '../components/ui/fade-in';
-import FAQSection, { staticFAQs } from '../components/FAQSection';
+import FAQSection from '../components/FAQSection';
 import { client } from '@/sanity/lib/client';
 import { faqsQuery } from '@/sanity/lib/queries';
 import { FAQ } from '@/sanity/lib/types';
@@ -13,17 +13,13 @@ export const metadata: Metadata = {
 };
 
 export default async function ContactPage() {
-  // Fetch FAQs from Sanity, fallback to static if none
+  // Fetch FAQs from Sanity
   let faqs: FAQ[] = []
   try {
     faqs = await client.fetch<FAQ[]>(faqsQuery)
   } catch (error) {
     console.error('Error fetching FAQs:', error)
-  }
-  
-  // Use static FAQs if no CMS content
-  if (!faqs || faqs.length === 0) {
-    faqs = staticFAQs
+    faqs = []
   }
   return (
     <>

@@ -58,7 +58,7 @@ export interface FAQ {
   _id: string
   question: string
   answer: any[]
-  category: 'general' | 'services' | 'pricing' | 'scheduling' | 'academic-support'
+  category: 'general' | 'services' | 'pricing' | 'scheduling' | 'academic-support' | 'curriculum' | 'online' | 'exams'
   order: number
 }
 

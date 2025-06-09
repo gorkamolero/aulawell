@@ -29,8 +29,10 @@ export const faq = defineType({
       options: {
         list: [
           { title: 'General', value: 'general' },
+          { title: 'Services', value: 'services' },
           { title: 'Pricing', value: 'pricing' },
           { title: 'Scheduling', value: 'scheduling' },
+          { title: 'Academic Support', value: 'academic-support' },
           { title: 'Curriculum', value: 'curriculum' },
           { title: 'Online Learning', value: 'online' },
           { title: 'Exam Preparation', value: 'exams' },
