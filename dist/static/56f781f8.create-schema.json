@@ -1,0 +1,2348 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Student Name"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g., \"Year 12 Student\", \"A-Level Graduate\"",
+        "name": "role",
+        "type": "string",
+        "title": "Role/Grade"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 50
+              },
+              {
+                "flag": "max",
+                "constraint": 500
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "content",
+        "type": "text",
+        "title": "Testimonial Content"
+      },
+      {
+        "initialValue": 5,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 1
+              },
+              {
+                "flag": "max",
+                "constraint": 5
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "rating",
+        "type": "number"
+      },
+      {
+        "initialValue": false,
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured on Homepage"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image",
+        "title": "Student Photo (Optional)"
+      },
+      {
+        "description": "e.g., \"GCSE Biology\", \"A-Level Mathematics\"",
+        "name": "course",
+        "type": "string",
+        "title": "Course/Subject"
+      },
+      {
+        "description": "e.g., \"Improved from D to A*\", \"Accepted to Cambridge\"",
+        "name": "achievement",
+        "type": "string"
+      }
+    ],
+    "name": "testimonial",
+    "type": "document",
+    "title": "Testimonials"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Service Title"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 150
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Brief description for service cards",
+        "name": "shortDescription",
+        "type": "text"
+      },
+      {
+        "description": "Detailed description with rich text",
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "fullDescription",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Lucide icon name (e.g., \"BookOpen\", \"Users\", \"Trophy\")",
+        "name": "icon",
+        "type": "string",
+        "title": "Icon Name"
+      },
+      {
+        "description": "e.g., \"€50/hour\", \"From €200\"",
+        "name": "price",
+        "type": "string",
+        "title": "Starting Price"
+      },
+      {
+        "description": "e.g., \"60 minutes\", \"90 minutes\"",
+        "name": "duration",
+        "type": "string"
+      },
+      {
+        "description": "List of key features or benefits",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "features",
+        "type": "array",
+        "title": "Key Features"
+      },
+      {
+        "description": "List of subjects this service covers",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "subjects",
+        "type": "array",
+        "title": "Subjects Covered"
+      },
+      {
+        "initialValue": false,
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured Service"
+      },
+      {
+        "description": "Order in which services are displayed (lower numbers first)",
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      }
+    ],
+    "name": "service",
+    "type": "document",
+    "title": "Services"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Story Title"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "studentName",
+        "type": "string"
+      },
+      {
+        "description": "Starting grade or performance level",
+        "name": "initialGrade",
+        "type": "string",
+        "title": "Initial Grade/Score"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Final grade or achievement",
+        "name": "finalGrade",
+        "type": "string",
+        "title": "Final Grade/Achievement"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g., \"GCSE Biology\", \"A-Level Mathematics\"",
+        "name": "subject",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "AQA",
+              "value": "aqa"
+            },
+            {
+              "title": "Cambridge IGCSE",
+              "value": "cambridge"
+            },
+            {
+              "title": "Edexcel",
+              "value": "edexcel"
+            },
+            {
+              "title": "OCR",
+              "value": "ocr"
+            },
+            {
+              "title": "IB",
+              "value": "ib"
+            },
+            {
+              "title": "Other",
+              "value": "other"
+            }
+          ]
+        },
+        "name": "examBoard",
+        "type": "string"
+      },
+      {
+        "description": "e.g., \"6 months\", \"1 year\"",
+        "name": "duration",
+        "type": "string",
+        "title": "Tutoring Duration"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "What was the student struggling with?",
+        "name": "challenge",
+        "type": "text",
+        "title": "Challenge/Problem"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "How did Amy help solve the problem?",
+        "name": "solution",
+        "type": "text",
+        "title": "Solution/Approach"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "What was achieved?",
+        "name": "result",
+        "type": "text",
+        "title": "Result/Outcome"
+      },
+      {
+        "description": "Detailed story with rich text formatting",
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "fullStory",
+        "type": "array"
+      },
+      {
+        "rows": 3,
+        "description": "Optional quote from the student or parent",
+        "name": "quote",
+        "type": "text",
+        "title": "Student Quote"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Achievement certificate, student photo, or related image",
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "initialValue": false,
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured Story"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "publishedDate",
+        "type": "date"
+      }
+    ],
+    "name": "successStory",
+    "type": "document",
+    "title": "Success Stories"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Section Title"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Hero Section",
+              "value": "hero"
+            },
+            {
+              "title": "Biography",
+              "value": "biography"
+            },
+            {
+              "title": "Qualifications",
+              "value": "qualifications"
+            },
+            {
+              "title": "Experience",
+              "value": "experience"
+            },
+            {
+              "title": "Philosophy",
+              "value": "philosophy"
+            },
+            {
+              "title": "Achievements",
+              "value": "achievements"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "hero",
+                  "biography",
+                  "qualifications",
+                  "experience",
+                  "philosophy",
+                  "achievements"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "section",
+        "type": "string",
+        "title": "Section Type"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Rich text content for this section",
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "content",
+        "type": "array"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Optional image for this section",
+        "name": "image",
+        "type": "image",
+        "title": "Section Image"
+      },
+      {
+        "description": "Key points or achievements to highlight",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "title",
+                "type": "string",
+                "title": "Highlight Title"
+              },
+              {
+                "rows": 2,
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "description": "Lucide icon name",
+                "name": "icon",
+                "type": "string",
+                "title": "Icon Name"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "highlights",
+        "type": "array",
+        "title": "Key Highlights"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Order in which sections appear on the page",
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      },
+      {
+        "initialValue": true,
+        "name": "published",
+        "type": "boolean"
+      }
+    ],
+    "name": "aboutContent",
+    "type": "document",
+    "title": "About Page Content"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "question",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "answer",
+        "type": "array"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "General",
+              "value": "general"
+            },
+            {
+              "title": "Pricing",
+              "value": "pricing"
+            },
+            {
+              "title": "Scheduling",
+              "value": "scheduling"
+            },
+            {
+              "title": "Curriculum",
+              "value": "curriculum"
+            },
+            {
+              "title": "Online Learning",
+              "value": "online"
+            },
+            {
+              "title": "Exam Preparation",
+              "value": "exams"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "general",
+                  "pricing",
+                  "scheduling",
+                  "curriculum",
+                  "online",
+                  "exams"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "description": "Order within category (lower numbers first)",
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      },
+      {
+        "initialValue": false,
+        "description": "Show in homepage FAQ section",
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured FAQ"
+      },
+      {
+        "initialValue": true,
+        "name": "published",
+        "type": "boolean"
+      }
+    ],
+    "name": "faq",
+    "type": "document",
+    "title": "Frequently Asked Questions"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 200
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Brief summary for blog listings",
+        "name": "excerpt",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "type": "image"
+          }
+        ],
+        "name": "content",
+        "type": "array"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "featuredImage",
+        "type": "image"
+      },
+      {
+        "initialValue": "Amy",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "author",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "publishedAt",
+        "type": "datetime",
+        "title": "Published Date"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Study Tips",
+              "value": "study-tips"
+            },
+            {
+              "title": "Exam Preparation",
+              "value": "exam-prep"
+            },
+            {
+              "title": "GCSE",
+              "value": "gcse"
+            },
+            {
+              "title": "A-Level",
+              "value": "a-level"
+            },
+            {
+              "title": "IGCSE",
+              "value": "igcse"
+            },
+            {
+              "title": "IB",
+              "value": "ib"
+            },
+            {
+              "title": "University Preparation",
+              "value": "university-prep"
+            },
+            {
+              "title": "Subject Guides",
+              "value": "subject-guides"
+            },
+            {
+              "title": "News",
+              "value": "news"
+            }
+          ]
+        },
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "categories",
+        "type": "array"
+      },
+      {
+        "description": "Keywords for SEO and filtering",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "tags",
+        "type": "array"
+      },
+      {
+        "initialValue": false,
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured Post"
+      },
+      {
+        "initialValue": false,
+        "name": "published",
+        "type": "boolean"
+      },
+      {
+        "description": "Optional custom title for SEO (defaults to post title)",
+        "name": "seoTitle",
+        "type": "string",
+        "title": "SEO Title"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Meta description for search engines",
+        "name": "seoDescription",
+        "type": "text",
+        "title": "SEO Description"
+      }
+    ],
+    "name": "blogPost",
+    "type": "document",
+    "title": "Blog Posts"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Internal name for this template (e.g., \"Contact Form Response\")",
+        "name": "name",
+        "type": "string",
+        "title": "Template Name"
+      },
+      {
+        "options": {
+          "source": "name",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Unique identifier for this template",
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Subject line for the email. You can use variables like {{parentName}}",
+        "name": "subject",
+        "type": "string",
+        "title": "Email Subject"
+      },
+      {
+        "description": "Preview text shown in email clients (optional)",
+        "name": "preheader",
+        "type": "string",
+        "title": "Preheader Text"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Email content. Use variables like {{parentName}}, {{studentName}}, {{subject}}, {{message}}",
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/"
+                                  ],
+                                  "allowRelative": false,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "name": "href",
+                      "type": "url",
+                      "title": "URL"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object",
+                  "title": "URL"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Emphasis"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "H1"
+              },
+              {
+                "value": "h2",
+                "title": "H2"
+              },
+              {
+                "value": "h3",
+                "title": "H3"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "body",
+        "type": "array",
+        "title": "Email Body"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Contact Form",
+              "value": "contact"
+            },
+            {
+              "title": "Welcome Series",
+              "value": "welcome"
+            },
+            {
+              "title": "Follow Up",
+              "value": "followup"
+            },
+            {
+              "title": "Onboarding",
+              "value": "onboarding"
+            },
+            {
+              "title": "Notification",
+              "value": "notification"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "contact",
+                  "welcome",
+                  "followup",
+                  "onboarding",
+                  "notification"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "initialValue": true,
+        "description": "Enable or disable this template",
+        "name": "isActive",
+        "type": "boolean",
+        "title": "Active"
+      },
+      {
+        "options": {
+          "layout": "tags"
+        },
+        "description": "List of variables available in this template",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "variables",
+        "type": "array",
+        "title": "Available Variables"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 0
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Delay in hours before sending (for automated sequences)",
+        "name": "sendDelay",
+        "type": "number",
+        "title": "Send Delay (hours)"
+      },
+      {
+        "description": "Next email in the sequence (if applicable)",
+        "to": [
+          {
+            "type": "emailTemplate"
+          }
+        ],
+        "name": "followUpTemplate",
+        "type": "reference",
+        "title": "Follow-up Template"
+      }
+    ],
+    "name": "emailTemplate",
+    "type": "document",
+    "title": "Email Templates"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Name of this email flow (e.g., \"Welcome Sequence\", \"Contact Form Follow-up\")",
+        "name": "name",
+        "type": "string",
+        "title": "Flow Name"
+      },
+      {
+        "options": {
+          "source": "name",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Unique identifier for this flow",
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 3,
+        "description": "Describe the purpose and trigger for this email flow",
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Contact Form Submission",
+              "value": "contact_form"
+            },
+            {
+              "title": "Welcome Series",
+              "value": "welcome_series"
+            },
+            {
+              "title": "Manual Trigger",
+              "value": "manual"
+            },
+            {
+              "title": "Schedule-based",
+              "value": "scheduled"
+            },
+            {
+              "title": "Event-based",
+              "value": "event"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "contact_form",
+                  "welcome_series",
+                  "manual",
+                  "scheduled",
+                  "event"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "What initiates this email flow",
+        "name": "trigger",
+        "type": "string",
+        "title": "Trigger Type"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Define the sequence of emails in this flow",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Name for this step (e.g., \"Welcome Email\", \"Day 3 Follow-up\")",
+                "name": "stepName",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Select the email template to use for this step",
+                "to": [
+                  {
+                    "type": "emailTemplate"
+                  }
+                ],
+                "name": "emailTemplate",
+                "type": "reference"
+              },
+              {
+                "initialValue": 0,
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "min",
+                        "constraint": 0
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "How long to wait before sending this email",
+                "name": "delayValue",
+                "type": "number"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Minutes",
+                      "value": "minutes"
+                    },
+                    {
+                      "title": "Hours",
+                      "value": "hours"
+                    },
+                    {
+                      "title": "Days",
+                      "value": "days"
+                    },
+                    {
+                      "title": "Weeks",
+                      "value": "weeks"
+                    }
+                  ]
+                },
+                "initialValue": "hours",
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "valid",
+                        "constraint": [
+                          "minutes",
+                          "hours",
+                          "days",
+                          "weeks"
+                        ]
+                      },
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "delayUnit",
+                "type": "string"
+              },
+              {
+                "description": "Conditions that must be met to send this email",
+                "of": [
+                  {
+                    "fields": [
+                      {
+                        "options": {
+                          "list": [
+                            {
+                              "title": "Always Send",
+                              "value": "always"
+                            },
+                            {
+                              "title": "If Previous Email Opened",
+                              "value": "if_opened"
+                            },
+                            {
+                              "title": "If Previous Email Not Opened",
+                              "value": "if_not_opened"
+                            },
+                            {
+                              "title": "If Link Clicked",
+                              "value": "if_clicked"
+                            },
+                            {
+                              "title": "Custom",
+                              "value": "custom"
+                            }
+                          ]
+                        },
+                        "initialValue": "always",
+                        "name": "type",
+                        "type": "string",
+                        "title": "Condition Type"
+                      },
+                      {
+                        "description": "Additional condition details (if applicable)",
+                        "name": "value",
+                        "type": "string",
+                        "title": "Condition Value"
+                      }
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "name": "conditions",
+                "type": "array",
+                "title": "Send Conditions"
+              }
+            ],
+            "type": "object",
+            "name": "emailStep"
+          }
+        ],
+        "name": "steps",
+        "type": "array",
+        "title": "Email Steps"
+      },
+      {
+        "initialValue": false,
+        "description": "Enable or disable this entire flow",
+        "name": "isActive",
+        "type": "boolean",
+        "title": "Active"
+      },
+      {
+        "options": {
+          "layout": "tags"
+        },
+        "description": "Tags for organizing and filtering flows",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "tags",
+        "type": "array"
+      },
+      {
+        "fields": [
+          {
+            "initialValue": true,
+            "description": "Stop sending emails if recipient unsubscribes",
+            "name": "stopOnUnsubscribe",
+            "type": "boolean",
+            "title": "Stop on Unsubscribe"
+          },
+          {
+            "initialValue": false,
+            "description": "Delay emails that would send on weekends to Monday",
+            "name": "skipWeekends",
+            "type": "boolean"
+          },
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "UTC",
+                  "value": "UTC"
+                },
+                {
+                  "title": "Europe/London",
+                  "value": "Europe/London"
+                },
+                {
+                  "title": "Europe/Madrid",
+                  "value": "Europe/Madrid"
+                },
+                {
+                  "title": "America/New_York",
+                  "value": "America/New_York"
+                }
+              ]
+            },
+            "initialValue": "Europe/Madrid",
+            "description": "Timezone for scheduling emails",
+            "name": "timezone",
+            "type": "string"
+          }
+        ],
+        "name": "settings",
+        "type": "object",
+        "title": "Flow Settings"
+      }
+    ],
+    "name": "emailFlow",
+    "type": "document",
+    "title": "Email Flows"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Full Name"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "role",
+        "type": "string",
+        "title": "Role/Position"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "bio",
+        "type": "text",
+        "title": "Biography"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Profile Image"
+      },
+      {
+        "description": "List of qualifications, certifications, or achievements",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "qualifications",
+        "type": "array"
+      },
+      {
+        "description": "Subject areas or student age groups this person specializes in",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "specialties",
+        "type": "array"
+      },
+      {
+        "name": "email",
+        "type": "email"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "linkedin",
+        "type": "url",
+        "title": "LinkedIn URL"
+      },
+      {
+        "initialValue": 0,
+        "description": "Order in which team members appear",
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      }
+    ],
+    "name": "teamMember",
+    "type": "document"
+  }
+]
