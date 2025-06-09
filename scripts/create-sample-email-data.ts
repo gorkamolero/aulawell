@@ -1,4 +1,18 @@
-import { client } from '../sanity/lib/client'
+import { createClient } from '@sanity/client'
+import * as dotenv from 'dotenv'
+import * as path from 'path'
+
+// Load environment variables from .env.local
+dotenv.config({ path: path.resolve(__dirname, '../.env.local') })
+
+// Create a client specifically for this script
+const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  apiVersion: '2024-01-01',
+  token: process.env.SANITY_API_TOKEN || process.env.SANITY_VIEWER_TOKEN,
+  useCdn: false,
+})
 
 const sampleEmailTemplates = [
   {
