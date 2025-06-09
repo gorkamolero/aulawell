@@ -27,19 +27,7 @@ async function createHomepageContent() {
       title: 'Homepage',
       heroTitle: 'Expert British & American Curriculum Tutoring',
       heroSubtitle: 'Helping students aged 11-18 excel in KS3, GCSE, IGCSE, A-Level, and IB from Madrid and worldwide',
-      heroButtonText: 'Book Your Free Consultation',
-      heroFeatures: [
-        'Current AQA & Cambridge Examiner',
-        'UK Leading Independent School Teacher',
-        '100% of Students Exceed Target Grades'
-      ],
-      servicesTitle: 'Expert Support for Every Academic Journey',
-      servicesSubtitle: 'From building foundations to achieving top grades, I provide personalized tutoring tailored to each student\'s needs',
-      testimonialsTitle: 'What Parents & Students Say',
-      testimonialsSubtitle: 'Join hundreds of successful students who have achieved their academic goals',
-      ctaTitle: 'Ready to Excel in Your Studies?',
-      ctaSubtitle: 'Book your free consultation today and take the first step towards academic success',
-      ctaButtonText: 'Get Started Today'
+      heroButtonText: 'Book Your Free Consultation'
     })
 
     console.log('Homepage content created successfully:', homepage._id)

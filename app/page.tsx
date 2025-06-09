@@ -59,19 +59,7 @@ export default async function Home() {
   const content = homepage || {
     heroTitle: "Expert British & American Curriculum Tutoring",
     heroSubtitle: "Helping students aged 11-18 excel in KS3, GCSE, IGCSE, A-Level, and IB from Madrid and worldwide",
-    heroButtonText: "Book Your Free Consultation",
-    heroFeatures: [
-      "Current AQA & Cambridge Examiner",
-      "UK Leading Independent School Teacher",
-      "100% of Students Exceed Target Grades"
-    ],
-    servicesTitle: "Expert Support for Every Academic Journey",
-    servicesSubtitle: "From building foundations to achieving top grades, I provide personalized tutoring tailored to each student's needs",
-    testimonialsTitle: "What Parents & Students Say",
-    testimonialsSubtitle: "Join hundreds of successful students who have achieved their academic goals",
-    ctaTitle: "Ready to Excel in Your Studies?",
-    ctaSubtitle: "Book your free consultation today and take the first step towards academic success",
-    ctaButtonText: "Get Started Today"
+    heroButtonText: "Book Your Free Consultation"
   }
   return (
     <>
@@ -115,21 +103,21 @@ export default async function Home() {
 
               <FadeIn delay={0.5}>
                 <div className="space-y-3">
-                  {content.heroFeatures.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <CheckCircle className="text-gold w-5 h-5 flex-shrink-0" />
-                      <span>
-                        {feature.includes("100%") ? (
-                          <>
-                            <AnimatedCounter end={100} suffix="%" /> of Students
-                            Exceed Target Grades
-                          </>
-                        ) : (
-                          feature
-                        )}
-                      </span>
-                    </div>
-                  ))}
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="text-gold w-5 h-5 flex-shrink-0" />
+                    <span>Current AQA & Cambridge Examiner</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="text-gold w-5 h-5 flex-shrink-0" />
+                    <span>UK Leading Independent School Teacher</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="text-gold w-5 h-5 flex-shrink-0" />
+                    <span>
+                      <AnimatedCounter end={100} suffix="%" /> of Students
+                      Exceed Target Grades
+                    </span>
+                  </div>
                 </div>
               </FadeIn>
             </div>
@@ -202,14 +190,9 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ParallaxSection offset={30}>
             <FadeIn>
-              <h2 className="text-3xl font-bold text-center mb-4 text-navy">
-                {content.servicesTitle}
+              <h2 className="text-3xl font-bold text-center mb-12 text-navy">
+                Tailored Support for Every Student
               </h2>
-              {content.servicesSubtitle && (
-                <p className="text-lg text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-                  {content.servicesSubtitle}
-                </p>
-              )}
             </FadeIn>
           </ParallaxSection>
 
@@ -277,14 +260,9 @@ export default async function Home() {
             {testimonials && testimonials.length > 0 ? (
             <>
               <FadeIn>
-                <h2 className="text-3xl font-bold text-center mb-4 text-navy">
-                  {content.testimonialsTitle}
+                <h2 className="text-3xl font-bold text-center mb-12 text-navy">
+                  What Parents & Students Say
                 </h2>
-                {content.testimonialsSubtitle && (
-                  <p className="text-lg text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-                    {content.testimonialsSubtitle}
-                  </p>
-                )}
               </FadeIn>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 {testimonials.map((testimonial, index) => (
@@ -325,13 +303,12 @@ export default async function Home() {
       <section className="py-16 bg-navy text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6">
-            {content.ctaTitle}
+            Ready to Unlock Your Child's Potential?
           </h2>
-          {content.ctaSubtitle && (
-            <p className="text-xl mb-8">
-              {content.ctaSubtitle}
-            </p>
-          )}
+          <p className="text-xl mb-8">
+            Limited spaces available for the new academic year. Let's discuss
+            your child's specific needs and create a personalized learning plan.
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "34XXXXXXXXX"}`}

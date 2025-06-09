@@ -131,13 +131,4 @@ export interface HomepageContent {
   heroTitle: string
   heroSubtitle: string
   heroButtonText: string
-  heroFeatures: string[]
-  heroImage?: any
-  servicesTitle: string
-  servicesSubtitle?: string
-  testimonialsTitle: string
-  testimonialsSubtitle?: string
-  ctaTitle: string
-  ctaSubtitle?: string
-  ctaButtonText: string
 }

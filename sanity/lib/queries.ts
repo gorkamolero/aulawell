@@ -281,15 +281,6 @@ export const homepageContentQuery = groq`
     title,
     heroTitle,
     heroSubtitle,
-    heroButtonText,
-    heroFeatures,
-    heroImage,
-    servicesTitle,
-    servicesSubtitle,
-    testimonialsTitle,
-    testimonialsSubtitle,
-    ctaTitle,
-    ctaSubtitle,
-    ctaButtonText
+    heroButtonText
   }
 `
