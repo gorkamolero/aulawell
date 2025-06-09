@@ -143,6 +143,7 @@ export default async function AboutPage() {
                 src="/images/tutor-teaching.jpg"
                 alt="Professional tutoring approach"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
                 className="object-cover"
               />
             </div>

@@ -64,7 +64,7 @@ export function OptimizedParallax({
   }, [speed, offset]);
 
   return (
-    <div ref={containerRef} className={`relative w-full h-full overflow-hidden ${className}`}>
+    <div ref={containerRef} className={`relative w-full h-full overflow-hidden ${className}`} style={{ position: 'relative' }}>
       <div 
         className="absolute w-[120%] h-[120%] -top-[5%] -left-[10%]"
         style={{

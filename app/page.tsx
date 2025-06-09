@@ -130,6 +130,7 @@ export default async function Home() {
                   src="/images/tutor-teaching.jpg"
                   alt="Professional tutor providing personalized education"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                 />
               </div>

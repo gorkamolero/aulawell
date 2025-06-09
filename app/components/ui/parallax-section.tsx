@@ -25,7 +25,7 @@ export function ParallaxSection({
   return (
     <motion.div
       ref={ref}
-      style={{ y }}
+      style={{ y, position: 'relative' }}
       className={className}
     >
       {children}

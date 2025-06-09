@@ -61,6 +61,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               alt={post.title}
               fill
               priority
+              sizes="100vw"
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent" />
