@@ -50,7 +50,7 @@ export default async function AboutPage() {
           <FadeIn delay={0.2}>
             <div className="space-y-4 text-lg">
             <p>
-              I'm Amy, and I bring something unique to international education: current examiner 
+              I'm Amelia Fernández-Kong, and I bring something unique to international education: current examiner 
               experience combined with over a decade teaching in Britain's leading independent schools.
             </p>
             <p>

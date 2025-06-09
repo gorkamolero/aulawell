@@ -90,7 +90,7 @@ Limited spaces available for the new academic year. Let's discuss your child's s
 
 **From Britain's Top Schools to Your Child's Success**
 
-I'm Amy, and I bring something unique to international education: current examiner experience combined with over a decade teaching in Britain's leading independent schools.
+I'm Amelia Fernández-Kong, and I bring something unique to international education: current examiner experience combined with over a decade teaching in Britain's leading independent schools.
 
 As an active examiner for AQA GCSE English and Cambridge IGCSE/AS & A-Level, I don't just prepare students for exams—I know exactly what examiners are looking for and how to deliver it.
 
@@ -151,52 +151,7 @@ As an active examiner, I see firsthand where students lose marks unnecessarily. 
 
 My passion for education extends beyond tutoring. I regularly attend examiner training sessions, staying current with the latest assessment trends. This commitment to professional development ensures your child always receives cutting-edge preparation.
 
-Living in Madrid has enriched my understanding of international families' needs, combining British educational excellence with the cultural awareness essential for global success.elia Fernández-Kong, and I've dedicated my career to helping international students navigate the complexities of British and American education systems. 
-
-Born in [location], educated in [credentials], and now based in Madrid, I understand firsthand the challenges of adapting to new educational frameworks while maintaining academic excellence.
-
-### My Story
-
-**From Classroom to Global Classroom**
-
-My journey began in traditional UK classrooms, where I earned my QTS (Qualified Teacher Status) and spent years understanding what makes students succeed in British examinations. But it was my move to international education that revealed my true calling.
-
-Working with students from over 20 countries, I discovered that international families need more than just subject tutoring—they need a guide who understands both where they're coming from and where they're going.
-
-### Why Aulawell?
-
-**Because One Size Doesn't Fit All**
-
-"Aula" means classroom in Spanish, and "well" represents our commitment to your child's wellbeing and success. Aulawell was born from a simple observation: the generic tutoring services flooding the market don't understand the unique position of international students.
-
-Your child isn't just learning mathematics or English—they're navigating cultural transitions, adapting to new assessment styles, and often bridging multiple languages. They deserve support that recognizes this complexity.
-
-### My Approach
-
-**Three Pillars of Success**
-
-1. **Deep Curriculum Knowledge**  
-   I don't just teach subjects; I decode examination requirements, understand marking schemes, and know exactly what Cambridge, Edexcel, and IB examiners expect.
-
-2. **Cultural Intelligence**  
-   Every family brings unique perspectives. I adapt my communication and teaching style to honor your cultural values while preparing students for success in British/American systems.
-
-3. **Holistic Support**  
-   Beyond academics, I guide families through school selection, university applications, and the emotional aspects of educational transitions.
-
-### Credentials & Experience
-
-- **Qualified Teacher Status (QTS)** - UK Department for Education
-- **MA in Education** - [University Name]
-- **BA (Hons) in [Subject]** - [University Name]
-- **10+ years** teaching British and American curricula
-- **500+ students** from international families
-- **Fluent in** English and Spanish
-- **Enhanced DBS checked** for child safety
-
-### Beyond the Classroom
-
-When I'm not helping students unlock their potential, you'll find me exploring Madrid's cultural offerings, practicing yoga, or planning my next international adventure. These experiences keep me connected to the expat journey and inform my empathetic approach to education.
+Living in Madrid has enriched my understanding of international families' needs, combining British educational excellence with the cultural awareness essential for global success.
 
 ---
 
@@ -473,6 +428,24 @@ Every grade improvement represents a child's increased confidence and a family's
 - Parents fully informed about Spanish university options
 
 > "Moving countries during GCSEs could have been a disaster. Amelia made it smooth, supporting both our children and explaining every difference between the systems." — Sarah Harrison
+
+---
+
+### Additional Parent Testimonials
+
+**What Parents Say:**
+
+> "Amy's examiner knowledge was the difference between my son getting into Cambridge and not. She knew exactly what they wanted to see." — Robert Chen
+
+> "After trying three other tutors, Amy was the first to truly understand my daughter's learning style. Her personalized approach made all the difference." — Emma Thompson
+
+> "The transformation in my son's confidence was remarkable. He went from dreading English essays to actively enjoying them." — Ahmed Al-Rashid
+
+> "Amy's exam marking service was invaluable. Her feedback was more detailed than anything we got from school." — Isabella Martinez
+
+> "The interview practice sessions gave my daughter the confidence she needed. She nailed her Cambridge interview!" — Michael & Sophie Laurent
+
+> "Amy's academic English program bridged the gap between my conversational English and what I needed for university success." — Yuki Tanaka
 
 ---
 
