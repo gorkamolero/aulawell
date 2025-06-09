@@ -7,8 +7,10 @@ import { blogPost } from './blogPost'
 import { emailTemplate } from './emailTemplate'
 import { emailFlow } from './emailFlow'
 import teamMember from './teamMember'
+import { homepageContent } from './homepageContent'
 
 export const schemaTypes = [
+  homepageContent,
   testimonial,
   service,
   successStory,

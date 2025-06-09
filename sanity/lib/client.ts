@@ -10,6 +10,10 @@ export const client = createClient({
   dataset,
   apiVersion,
   useCdn: process.env.NODE_ENV === 'production',
+  stega: {
+    enabled: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL ? true : false,
+    studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL || '',
+  },
 })
 
 const builder = imageUrlBuilder(client)

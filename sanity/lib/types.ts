@@ -123,3 +123,21 @@ export interface EmailTemplate {
     slug: { current: string }
   }
 }
+
+export interface HomepageContent {
+  _id: string
+  _type: 'homepageContent'
+  title: string
+  heroTitle: string
+  heroSubtitle: string
+  heroButtonText: string
+  heroFeatures: string[]
+  heroImage?: any
+  servicesTitle: string
+  servicesSubtitle?: string
+  testimonialsTitle: string
+  testimonialsSubtitle?: string
+  ctaTitle: string
+  ctaSubtitle?: string
+  ctaButtonText: string
+}

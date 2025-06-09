@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation'
 import { FadeIn } from '@/app/components/ui/fade-in'
 import { GridBackground } from '@/app/components/ui/grid-background'
 import { CheckCircle, ArrowRight } from 'lucide-react'
+import { draftMode } from 'next/headers'
 
 export async function generateStaticParams() {
   const services = await client.fetch<Service[]>(servicesQuery)
@@ -37,9 +38,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const service = await client.fetch<Service | null>(serviceBySlugQuery, {
-    slug,
-  })
+  const { isEnabled } = await draftMode()
+  
+  const service = await client.fetch<Service | null>(
+    serviceBySlugQuery,
+    { slug },
+    isEnabled
+      ? {
+          perspective: "previewDrafts",
+          useCdn: false,
+          stega: true,
+        }
+      : undefined
+  )
 
   if (!service) {
     notFound()

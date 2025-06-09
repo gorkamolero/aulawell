@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { FadeIn } from '@/app/components/ui/fade-in'
+import { draftMode } from 'next/headers'
 
 export async function generateStaticParams() {
   const posts = await client.fetch<BlogPost[]>(blogPostsQuery)
@@ -42,9 +43,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const post = await client.fetch<BlogPost | null>(blogPostBySlugQuery, {
-    slug,
-  })
+  const { isEnabled } = await draftMode()
+  
+  const post = await client.fetch<BlogPost | null>(
+    blogPostBySlugQuery, 
+    { slug },
+    isEnabled
+      ? {
+          perspective: "previewDrafts",
+          useCdn: false,
+          stega: true,
+        }
+      : undefined
+  )
 
   if (!post) {
     notFound()

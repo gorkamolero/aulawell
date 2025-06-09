@@ -273,3 +273,23 @@ export const emailTemplatesByCategoryQuery = groq`
     }
   }
 `
+
+export const homepageContentQuery = groq`
+  *[_type == "homepageContent"][0] {
+    _id,
+    _type,
+    title,
+    heroTitle,
+    heroSubtitle,
+    heroButtonText,
+    heroFeatures,
+    heroImage,
+    servicesTitle,
+    servicesSubtitle,
+    testimonialsTitle,
+    testimonialsSubtitle,
+    ctaTitle,
+    ctaSubtitle,
+    ctaButtonText
+  }
+`
