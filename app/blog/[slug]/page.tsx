@@ -62,11 +62,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
 
   return (
-    <article className="min-h-screen bg-white -mt-16 pt-20 md:pt-16">
+    <article className="min-h-screen bg-white -mt-16">
       {/* Hero Section with Featured Image */}
       {post.mainImage && (
-        <section className="relative w-full">
-          <div className="relative aspect-[21/9] md:max-h-[480px] max-h-[300px] overflow-hidden">
+        <section className="relative w-full pt-16">
+          <div className="relative h-[400px] md:h-[500px] w-full">
             <Image
               src={urlFor(post.mainImage).width(1920).height(600).url()}
               alt={post.title}
@@ -76,39 +76,43 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent" />
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-            <div className="max-w-6xl mx-auto px-4">
-              {post.categories && post.categories.length > 0 && (
-                  <div className="flex gap-2 mb-4">
-                    {post.categories.map((category) => (
-                      <span
-                        key={category}
-                        className="text-sm font-semibold text-navy bg-gold px-3 py-1 rounded shadow-md"
-                      >
-                        {category}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-6 drop-shadow-lg leading-tight">
-                  {post.title}
-                </h1>
-                <div className="flex items-center gap-4 text-white/95 text-lg">
-                  <time>
-                    {new Date(post.publishedAt || post._createdAt).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </time>
-                  {post.readingTime && (
-                    <>
-                      <span>•</span>
-                      <span>{post.readingTime} min read</span>
-                    </>
+            
+            {/* Content overlay */}
+            <div className="absolute inset-0 flex items-end">
+              <div className="w-full p-8 md:p-12">
+                <div className="max-w-6xl mx-auto">
+                  {post.categories && post.categories.length > 0 && (
+                    <div className="flex gap-2 mb-4">
+                      {post.categories.map((category) => (
+                        <span
+                          key={category}
+                          className="text-xs font-medium text-gold bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full border border-white/30"
+                        >
+                          {category}
+                        </span>
+                      ))}
+                    </div>
                   )}
+                  <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-6 drop-shadow-lg leading-tight">
+                    {post.title}
+                  </h1>
+                  <div className="flex items-center gap-4 text-white/95 text-lg">
+                    <time>
+                      {new Date(post.publishedAt || post._createdAt).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </time>
+                    {post.readingTime && (
+                      <>
+                        <span>•</span>
+                        <span>{post.readingTime} min read</span>
+                      </>
+                    )}
+                  </div>
                 </div>
+              </div>
             </div>
           </div>
         </section>
