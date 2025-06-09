@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown, ChevronUp } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { FadeIn } from './ui/fade-in'
 import { FAQ } from '@/sanity/lib/types'
 import { PortableTextRenderer } from '@/sanity/lib/portableText'
@@ -57,33 +57,42 @@ export default function FAQSection({ faqs, title = "Frequently Asked Questions" 
                 {categoryLabels[category as keyof typeof categoryLabels] || category}
               </h3>
               <div className="space-y-3">
-                {categoryFaqs.map((faq) => (
-                  <div
-                    key={faq._id}
-                    className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-200"
-                  >
-                    <button
-                      onClick={() => toggleItem(faq._id)}
-                      className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-opacity-50"
-                    >
-                      <span className="font-medium text-gray-900 pr-4">{faq.question}</span>
-                      <div className="flex-shrink-0">
-                        {openItems.includes(faq._id) ? (
-                          <ChevronUp className="text-gold w-5 h-5 transform transition-transform duration-200" />
-                        ) : (
-                          <ChevronDown className="text-gold w-5 h-5 transform transition-transform duration-200" />
-                        )}
-                      </div>
-                    </button>
-                    {openItems.includes(faq._id) && (
-                      <div className="px-6 pb-5 border-t border-gray-100 bg-gray-50">
-                        <div className="pt-4 prose prose-sm max-w-none text-gray-700 leading-relaxed">
-                          <PortableTextRenderer content={faq.answer} />
+                {categoryFaqs.map((faq, index) => {
+                  const isOpen = openItems.includes(faq._id)
+                  return (
+                    <FadeIn key={faq._id} delay={index * 0.05}>
+                      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:border-gold/20 transition-all duration-300 group">
+                        <button
+                          onClick={() => toggleItem(faq._id)}
+                          className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gradient-to-r hover:from-gold/5 hover:to-transparent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-opacity-50 group"
+                          aria-expanded={isOpen}
+                        >
+                          <span className="font-semibold text-gray-900 pr-4 group-hover:text-navy transition-colors duration-200">
+                            {faq.question}
+                          </span>
+                          <div className="flex-shrink-0">
+                            <ChevronDown 
+                              className={`text-gold w-5 h-5 transition-all duration-300 group-hover:scale-110 ${
+                                isOpen ? 'rotate-180' : 'rotate-0'
+                              }`} 
+                            />
+                          </div>
+                        </button>
+                        <div 
+                          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                            isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                          }`}
+                        >
+                          <div className="px-6 pb-6 border-t border-gray-100 bg-gradient-to-b from-gray-50/50 to-transparent">
+                            <div className="pt-4 prose prose-sm max-w-none text-gray-700 leading-relaxed">
+                              <PortableTextRenderer content={faq.answer} />
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    )}
-                  </div>
-                ))}
+                    </FadeIn>
+                  )
+                })}
               </div>
             </div>
           </FadeIn>
