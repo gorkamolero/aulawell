@@ -2,13 +2,29 @@ import ContactForm from '../components/ContactForm';
 import { Mail, MessageCircle, Clock, ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
 import { FadeIn } from '../components/ui/fade-in';
+import FAQSection, { staticFAQs } from '../components/FAQSection';
+import { client } from '@/sanity/lib/client';
+import { faqsQuery } from '@/sanity/lib/queries';
+import { FAQ } from '@/sanity/lib/types';
 
 export const metadata: Metadata = {
   title: 'Contact Aulawell - Book Your Free Consultation',
   description: 'Get in touch for expert tutoring services. Book a free consultation for GCSE, A-Level, IB tutoring. Available online worldwide and in-person in Madrid.',
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  // Fetch FAQs from Sanity, fallback to static if none
+  let faqs: FAQ[] = []
+  try {
+    faqs = await client.fetch<FAQ[]>(faqsQuery)
+  } catch (error) {
+    console.error('Error fetching FAQs:', error)
+  }
+  
+  // Use static FAQs if no CMS content
+  if (!faqs || faqs.length === 0) {
+    faqs = staticFAQs
+  }
   return (
     <>
       {/* Hero Section */}
@@ -110,48 +126,8 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-navy mb-12 text-center">Frequently Asked Questions</h2>
-          
-          <div className="space-y-8">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-semibold text-navy mb-3">How do online sessions work?</h3>
-              <p className="text-gray-700">
-                We use Zoom with interactive whiteboards, screen sharing, and digital resources. 
-                Students need a computer/tablet, stable internet, and a quiet space. I provide all 
-                materials digitally.
-              </p>
-            </div>
-            
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-semibold text-navy mb-3">What's your availability?</h3>
-              <p className="text-gray-700">
-                I offer flexible scheduling from 9:00-21:00 CET, with special arrangements for Asian 
-                and American time zones. We'll find times that work for your family.
-              </p>
-            </div>
-            
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-semibold text-navy mb-3">What's included in each service?</h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-700">
-                <li><strong>1-2-1 Tuition:</strong> Personalized lessons tailored to your child's needs</li>
-                <li><strong>Group Tuition:</strong> Small groups (2-3 students) at similar levels</li>
-                <li><strong>Courses:</strong> Intensive exam preparation programs</li>
-                <li><strong>Exam Marking:</strong> Detailed feedback on practice papers using examiner criteria</li>
-                <li><strong>Interview Practice:</strong> School and university interview preparation</li>
-              </ul>
-            </div>
-            
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-semibold text-navy mb-3">What's your cancellation policy?</h3>
-              <p className="text-gray-700">
-                24-hour notice for no charge. I understand international families have complex schedules 
-                and handle emergencies flexibly.
-              </p>
-            </div>
-          </div>
-        </div>
+      <section className="bg-gray-50">
+        <FAQSection faqs={faqs} />
       </section>
 
       {/* Location Section */}
