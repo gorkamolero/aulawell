@@ -2,13 +2,8 @@ import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import { visionTool } from '@sanity/vision';
 import { presentationTool } from 'sanity/presentation';
-
-import { testimonial } from './sanity/schemas/testimonial';
-import { service } from './sanity/schemas/service';
-import { successStory } from './sanity/schemas/successStory';
-import { aboutContent } from './sanity/schemas/aboutContent';
-import { faq } from './sanity/schemas/faq';
-import { blogPost } from './sanity/schemas/blogPost';
+import { schemaTypes } from './sanity/schemas';
+import { structure } from './sanity/structure';
 
 export default defineConfig({
   name: 'aulawell',
@@ -19,7 +14,9 @@ export default defineConfig({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   
   plugins: [
-    deskTool(),
+    deskTool({
+      structure
+    }),
     visionTool(),
     presentationTool({
       previewUrl: {
@@ -33,14 +30,7 @@ export default defineConfig({
   ],
   
   schema: {
-    types: [
-      testimonial,
-      service,
-      successStory,
-      aboutContent,
-      faq,
-      blogPost,
-    ],
+    types: schemaTypes,
   },
   
   studio: {

@@ -125,22 +125,21 @@ export async function POST(request: NextRequest) {
       // You might want to log this to a monitoring service
     }
     
-    // Trigger email automation sequence
+    // Trigger email flow
     try {
-      const { triggerEmailSequence } = await import('@/lib/email/simple-automation')
-      await triggerEmailSequence({
-        type: 'contact_form',
-        recipientEmail: data.email,
-        variables: {
-          parentName,
-          studentName,
-          email: data.email,
-          phone: data.phone || '',
-        }
+      const { triggerContactFormFlow } = await import('@/lib/email/flow-processor')
+      await triggerContactFormFlow(data.email, {
+        parentName,
+        studentName,
+        email: data.email,
+        phone: data.phone || '',
+        subject,
+        message: data.message,
+        services: servicesRequested,
       })
-    } catch (automationError) {
-      console.error('Email automation error:', automationError)
-      // Don't fail the request if automation fails
+    } catch (flowError) {
+      console.error('Email flow error:', flowError)
+      // Don't fail the request if flow fails
     }
     
     return NextResponse.json(
