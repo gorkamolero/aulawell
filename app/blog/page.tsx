@@ -5,7 +5,6 @@ import { BlogPost } from '@/sanity/lib/types'
 import Link from 'next/link'
 import Image from 'next/image'
 import { FadeIn } from '@/app/components/ui/fade-in'
-import { GridBackground } from '@/app/components/ui/grid-background'
 
 export const metadata = {
   title: 'Blog | Aulawell - Expert Insights on British & American Education',
@@ -17,15 +16,12 @@ export default async function BlogPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <GridBackground />
-      
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy/5 to-gold/5" />
-        <div className="container relative z-10 mx-auto px-4">
+      {/* Page Header */}
+      <section className="bg-gray-50 py-16 border-b">
+        <div className="container mx-auto px-4">
           <FadeIn>
-            <h1 className="text-4xl md:text-5xl font-bold text-center text-navy mb-6">
-              Educational Insights & Exam Tips
+            <h1 className="text-4xl md:text-5xl font-bold text-center text-navy mb-4">
+              Blog
             </h1>
             <p className="text-xl text-gray-600 text-center max-w-3xl mx-auto">
               Expert guidance from a current examiner on navigating British and American education systems, 

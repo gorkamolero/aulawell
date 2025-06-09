@@ -11,9 +11,11 @@ import { GridBackground } from '@/app/components/ui/grid-background'
 
 export async function generateStaticParams() {
   const posts = await client.fetch<BlogPost[]>(blogPostsQuery)
-  return posts.map((post) => ({
-    slug: post.slug.current,
-  }))
+  return posts
+    .filter((post) => post.slug?.current)
+    .map((post) => ({
+      slug: post.slug.current,
+    }))
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {

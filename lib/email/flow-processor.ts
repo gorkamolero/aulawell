@@ -29,14 +29,7 @@ interface EmailFlow {
   }
 }
 
-interface FlowRecipient {
-  email: string
-  data: Record<string, any>
-  flowId: string
-  currentStep?: number
-  startedAt?: Date
-  completedSteps?: string[]
-}
+// Removed unused FlowRecipient interface
 
 // Convert delay to milliseconds
 function getDelayInMs(value: number, unit: string): number {
@@ -49,18 +42,7 @@ function getDelayInMs(value: number, unit: string): number {
   return value * (multipliers[unit as keyof typeof multipliers] || 0)
 }
 
-// Check if we should skip weekends
-function adjustForWeekends(date: Date, skipWeekends: boolean): Date {
-  if (!skipWeekends) return date
-  
-  const day = date.getDay()
-  if (day === 6) { // Saturday
-    date.setDate(date.getDate() + 2)
-  } else if (day === 0) { // Sunday
-    date.setDate(date.getDate() + 1)
-  }
-  return date
-}
+// Removed unused adjustForWeekends function
 
 // Get email flow by trigger type
 export async function getFlowByTrigger(trigger: string): Promise<EmailFlow | null> {
@@ -114,7 +96,7 @@ export async function getFlowBySlug(slug: string): Promise<EmailFlow | null> {
 export async function startEmailFlow(
   flowSlugOrTrigger: string,
   recipient: string,
-  data: Record<string, any>,
+  data: Record<string, unknown>,
   isTrigger = false
 ): Promise<void> {
   // Get the flow
@@ -159,8 +141,8 @@ export async function startEmailFlow(
 // Check if step conditions are met
 async function checkStepConditions(
   step: EmailFlowStep,
-  recipient: string,
-  data: Record<string, any>
+  _recipient: string,
+  _data: Record<string, unknown>
 ): Promise<boolean> {
   if (!step.conditions || step.conditions.length === 0) return true
   
@@ -193,7 +175,7 @@ async function sendFlowStep(
   flow: EmailFlow,
   step: EmailFlowStep,
   recipient: string,
-  data: Record<string, any>
+  data: Record<string, unknown>
 ): Promise<void> {
   try {
     console.log(`Sending ${step.stepName} to ${recipient}`)
@@ -221,7 +203,7 @@ async function sendFlowStep(
 // Trigger a flow for contact form submissions
 export async function triggerContactFormFlow(
   email: string,
-  formData: Record<string, any>
+  formData: Record<string, unknown>
 ): Promise<void> {
   await startEmailFlow('contact_form', email, formData, true)
 }
@@ -229,7 +211,7 @@ export async function triggerContactFormFlow(
 // Trigger a welcome series flow
 export async function triggerWelcomeFlow(
   email: string,
-  userData: Record<string, any>
+  userData: Record<string, unknown>
 ): Promise<void> {
   await startEmailFlow('welcome_series', email, userData, true)
 }

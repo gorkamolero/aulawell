@@ -170,6 +170,134 @@ const blogPosts = [
       metaDescription: 'Essential guide for American families navigating British GCSEs. Understand grade systems, exam differences, and avoid costly mistakes in the UK education system.',
       focusKeyword: 'american parents gcse guide'
     }
+  },
+  {
+    _type: 'blogPost',
+    title: 'Last-Minute Revision Panic: 48-Hour Exam Rescue Plan',
+    slug: { current: 'last-minute-exam-rescue-plan' },
+    excerpt: 'It\'s Sunday night. The exam is Tuesday morning. Your child just admitted they "don\'t understand any of it." Here\'s your 48-hour emergency plan from an examiner who\'s seen it all.',
+    categories: ['exam-preparation', 'crisis-support', 'study-techniques'],
+    tags: ['last-minute-revision', 'exam-panic', 'emergency-tutoring', '48-hour-plan'],
+    publishedAt: new Date('2024-03-10').toISOString(),
+    featured: false,
+    readingTime: 18,
+    seo: {
+      metaTitle: 'Last-Minute GCSE Revision: 48-Hour Emergency Exam Rescue Plan',
+      metaDescription: 'Exam in 48 hours and your child is panicking? Current examiner shares the exact emergency plan that can mean the difference between failure and passing grades.',
+      focusKeyword: 'last minute exam revision'
+    }
+  },
+  {
+    _type: 'blogPost',
+    title: 'When WhatsApp Parent Groups Become Toxic: Handling Academic Competition',
+    slug: { current: 'toxic-whatsapp-parent-groups' },
+    excerpt: 'Those school WhatsApp groups meant to help have become competitive arenas where Grade 9 humble-brags destroy your peace. Here\'s how to protect your family from the toxicity.',
+    categories: ['parent-guidance', 'wellbeing', 'school-culture'],
+    tags: ['whatsapp-groups', 'parent-competition', 'school-community', 'mental-health'],
+    publishedAt: new Date('2024-03-03').toISOString(),
+    featured: false,
+    readingTime: 14,
+    seo: {
+      metaTitle: 'Toxic School WhatsApp Groups: Protecting Your Family from Academic Competition',
+      metaDescription: 'When parent WhatsApp groups become sources of anxiety and competition, your family suffers. Learn how to handle toxic academic comparisons and protect your peace.',
+      focusKeyword: 'toxic parent whatsapp groups'
+    }
+  },
+  {
+    _type: 'blogPost',
+    title: 'November Academic Emergency: Why This Month Determines Your Child\'s Future',
+    slug: { current: 'november-academic-emergency' },
+    excerpt: 'Most parents think January mocks are the critical moment. They\'re wrong. November is when academic trajectories are truly set. Here\'s why this month matters more than any other.',
+    categories: ['academic-planning', 'crisis-prevention', 'parent-guidance'],
+    tags: ['november-intervention', 'academic-planning', 'early-intervention', 'exam-preparation'],
+    publishedAt: new Date('2024-02-25').toISOString(),
+    featured: true,
+    readingTime: 16,
+    seo: {
+      metaTitle: 'November Academic Crisis: Why This Month Determines GCSE Success',
+      metaDescription: 'November is the hidden turning point in academic success. Examiner reveals why intervention this month prevents January crisis and ensures May success.',
+      focusKeyword: 'november academic intervention'
+    }
+  },
+  {
+    _type: 'blogPost',
+    title: 'From Predicted Fails to A*s: Real Parent Success Stories',
+    slug: { current: 'predicted-fails-to-success-stories' },
+    excerpt: 'Six months ago, these parents were researching vocational courses. Yesterday, their children opened A* results. Here are the real stories of families who refused to accept failure.',
+    categories: ['success-stories', 'inspiration', 'case-studies'],
+    tags: ['success-stories', 'grade-transformation', 'parent-testimonials', 'academic-recovery'],
+    publishedAt: new Date('2024-02-18').toISOString(),
+    featured: true,
+    readingTime: 20,
+    seo: {
+      metaTitle: 'From Predicted Fails to A*s: Real GCSE Transformation Stories',
+      metaDescription: 'Inspiring true stories of students who went from predicted failures to top grades. Learn how these families turned academic crisis into celebrated success.',
+      focusKeyword: 'gcse success stories'
+    }
+  },
+  {
+    _type: 'blogPost',
+    title: 'The January Mock Exam Crisis: Your 4-Month Rescue Plan Before Finals',
+    slug: { current: 'january-mock-crisis-rescue-plan' },
+    excerpt: 'January mock results just arrived and they\'re worse than feared. You have 16 weeks until finals. Here\'s your strategic rescue plan from an examiner who\'s guided hundreds through this exact crisis.',
+    categories: ['exam-preparation', 'crisis-support', 'mock-exams'],
+    tags: ['january-mocks', 'exam-recovery', '4-month-plan', 'crisis-intervention'],
+    publishedAt: new Date('2024-01-20').toISOString(),
+    featured: true,
+    readingTime: 22,
+    seo: {
+      metaTitle: 'January Mock Exam Crisis: 16-Week Rescue Plan Before GCSEs',
+      metaDescription: 'Failed January mocks? You have 16 weeks to transform results. Current examiner shares the exact rescue plan that turns mock failures into final exam success.',
+      focusKeyword: 'january mock exam crisis'
+    }
+  },
+  {
+    _type: 'blogPost',
+    title: 'Why the "Best" Tutor on Paper Might Be Wrong for Your Child',
+    slug: { current: 'choosing-right-tutor-not-best' },
+    excerpt: 'Oxford graduate, 100% A* rate, 15 years experience - and they made your child cry. Here\'s why the "best" tutor might be the worst choice and how to find your child\'s perfect match.',
+    categories: ['tutoring', 'parent-guidance', 'education-choices'],
+    tags: ['choosing-tutors', 'tutor-matching', 'education-support', 'parent-advice'],
+    publishedAt: new Date('2024-03-15').toISOString(),
+    featured: false,
+    readingTime: 19,
+    seo: {
+      metaTitle: 'Why the Best Tutor on Paper Might Be Wrong for Your Child',
+      metaDescription: 'Credentials don\'t predict tutoring success. Learn why the "perfect" tutor might fail your child and how to find the right match for real transformation.',
+      focusKeyword: 'choosing right tutor'
+    }
+  },
+  {
+    _type: 'blogPost',
+    title: 'Holiday Learning Loss: How Family Trips Sabotage Exam Success',
+    slug: { current: 'holiday-learning-loss-exam-impact' },
+    excerpt: 'That two-week ski trip sounds harmless. But in the British exam system, holiday absence creates academic gaps that compound into May exam disasters. Here\'s the mathematics of holiday learning loss.',
+    categories: ['exam-preparation', 'parent-guidance', 'academic-planning'],
+    tags: ['holiday-learning', 'exam-impact', 'family-trips', 'academic-disruption'],
+    publishedAt: new Date('2024-02-22').toISOString(),
+    featured: false,
+    readingTime: 17,
+    seo: {
+      metaTitle: 'Holiday Learning Loss: How Family Trips Impact Exam Success',
+      metaDescription: 'Two-week holidays create 8-10 weeks of academic disruption. Learn the hidden mathematics of learning loss and how to protect exam success during family trips.',
+      focusKeyword: 'holiday learning loss'
+    }
+  },
+  {
+    _type: 'blogPost',
+    title: 'IB vs A-Levels vs AP: Emergency Decision Guide When Your Child is Struggling',
+    slug: { current: 'ib-alevels-ap-struggling-student-guide' },
+    excerpt: 'Your child is drowning in IB. Should you switch to A-Levels? When does changing curriculum save students versus destroy them? Critical guidance for families facing curriculum crisis.',
+    categories: ['curriculum-choice', 'crisis-support', 'international-education'],
+    tags: ['ib-diploma', 'a-levels', 'ap-courses', 'curriculum-crisis', 'education-decisions'],
+    publishedAt: new Date('2024-03-08').toISOString(),
+    featured: true,
+    readingTime: 21,
+    seo: {
+      metaTitle: 'IB vs A-Levels vs AP: Which Curriculum When Your Child is Struggling?',
+      metaDescription: 'Emergency guide for families considering curriculum change. Learn when switching from IB to A-Levels saves students and when it destroys academic futures.',
+      focusKeyword: 'ib vs a-levels curriculum choice'
+    }
   }
 ]
 
@@ -208,7 +336,15 @@ async function main() {
   const filePaths = [
     '/Users/gorkolas/Downloads/mock-exam-crisis-blog.md',
     '/Users/gorkolas/Downloads/protecting-school-investment-blog.md',
-    '/Users/gorkolas/Downloads/american-parents-gcse-guide-blog.md'
+    '/Users/gorkolas/Downloads/american-parents-gcse-guide-blog.md',
+    '/Users/gorkolas/Downloads/post-1.md',
+    '/Users/gorkolas/Downloads/post-2.md',
+    '/Users/gorkolas/Downloads/post-3.md',
+    '/Users/gorkolas/Downloads/post-4.md',
+    '/Users/gorkolas/Downloads/post-5.md',
+    '/Users/gorkolas/Downloads/post-6.md',
+    '/Users/gorkolas/Downloads/post-7.md',
+    '/Users/gorkolas/Downloads/post-8.md'
   ]
   
   for (let i = 0; i < blogPosts.length; i++) {

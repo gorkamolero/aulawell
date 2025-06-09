@@ -139,7 +139,7 @@ export const faqsByCategoryQuery = groq`
 
 // Blog Posts
 export const blogPostsQuery = groq`
-  *[_type == "blogPost"] | order(publishedAt desc, _createdAt desc) {
+  *[_type == "blogPost" && defined(slug.current)] | order(publishedAt desc, _createdAt desc) [0...9] {
     _id,
     _createdAt,
     title,

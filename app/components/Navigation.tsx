@@ -40,13 +40,13 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center -my-8 -ml-4">
             <Image
               src="https://cdn.sanity.io/images/b021mpru/production/338f6e32c6f43a8a97cad1d4e04bf4ae768e671c-612x408.png"
               alt="Aulawell - Premium Educational Tutoring"
-              width={400}
-              height={120}
-              className="w-auto max-h-20"
+              width={240}
+              height={160}
+              className="h-40 md:h-48 w-auto"
               priority
             />
           </Link>
